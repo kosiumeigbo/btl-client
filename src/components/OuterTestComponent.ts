@@ -1,3 +1,5 @@
+import "./TestComponent";
+
 class OuterTestComponent extends HTMLElement {
   constructor() {
     super();
@@ -9,7 +11,6 @@ class OuterTestComponent extends HTMLElement {
 
   render(): string {
     return `
-      <h1>Hello</h1>
       <my-test-component/>
       `;
   }
