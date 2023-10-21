@@ -1,17 +1,25 @@
 import "./TestComponent";
 
 class OuterTestComponent extends HTMLElement {
-  constructor() {
+  data: string;
+
+  constructor(data: string) {
     super();
+    this.data = data;
   }
 
   connectedCallback(): void {
-    this.innerHTML = this.render();
+    this.render();
   }
 
-  render(): string {
+  render(): void {
+    this.innerHTML = this.getMarkUp();
+  }
+
+  getMarkUp(): string {
     return `
-      <my-test-component/>
+    <h1 data="hello">This is from Outer Component: ${this.data}</h1>
+      <my-test-component data="${this.data}"/>
       `;
   }
 }

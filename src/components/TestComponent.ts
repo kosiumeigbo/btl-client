@@ -1,15 +1,27 @@
 class TestComponent extends HTMLElement {
+  data: string = "";
+
   constructor() {
     super();
   }
 
-  connectedCallback(): void {
-    this.innerHTML = this.render();
+  static observedAttributes = ["data"];
+
+  attributeChangedCallback(name: string, oldValue: string, newValue: string): void {
+    if (name === "data") this.data = newValue;
   }
 
-  render(): string {
+  connectedCallback(): void {
+    this.render();
+  }
+
+  render(): void {
+    this.innerHTML = this.getMarkUp();
+  }
+
+  getMarkUp(): string {
     return `
-    <h1>Hello</h1>
+    <h1>This is the inner test component: ${this.data.length}</h1>
     `;
   }
 }
