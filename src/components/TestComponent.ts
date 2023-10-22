@@ -15,7 +15,7 @@ class TestComponent extends HTMLElement {
     this.render();
   }
 
-  render(): void {
+  render(data): void {
     this.innerHTML = this.getMarkUp();
   }
 

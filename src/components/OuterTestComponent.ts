@@ -1,15 +1,23 @@
 import "./TestComponent";
+import type { State } from "../types";
 
 class OuterTestComponent extends HTMLElement {
-  data: string;
+  data: State;
 
-  constructor(data: string) {
+  constructor(data: State) {
     super();
     this.data = data;
   }
 
   connectedCallback(): void {
     this.render();
+    const header = this.querySelector("h1");
+    let i = 1;
+
+    header?.addEventListener("click", () => {
+      console.log(i);
+      i++;
+    });
   }
 
   render(): void {
@@ -18,7 +26,7 @@ class OuterTestComponent extends HTMLElement {
 
   getMarkUp(): string {
     return `
-    <h1 data="hello">This is from Outer Component: ${this.data}</h1>
+    <h1 style="color: red">This is from Outer Component: ${this.data}</h1>
       <my-test-component data="${this.data}"/>
       `;
   }
