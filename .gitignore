@@ -3,3 +3,5 @@ dist
 server
 .DS_Store
 .parcel-cache
+testDataNYT.json
+testDataOpenLibrary.json
