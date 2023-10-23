@@ -3,6 +3,10 @@ import { NY_TIMES_API_KEY, NY_TIMES_BEST_SELLERS_URL } from "./config";
 
 export const state: State = {
   nyTimesBestSeller: [],
+  search: {
+    query: "",
+    result: null
+  },
   library: {
     booksDone: [],
     booksInProgress: [],
