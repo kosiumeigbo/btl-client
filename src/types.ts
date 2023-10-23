@@ -43,14 +43,80 @@ interface BuyLink {
   name: string;
   url: string;
 }
+
+export interface OpenLibraryData {
+  url: string;
+  key: string;
+  title: string;
+  authors: Author[];
+  identifiers: Identifiers;
+  publishers: Publisher[];
+  publish_date?: string;
+  subjects: Subject[];
+  ebooks: Ebook[];
+  cover: Cover;
+  pagination?: string;
+}
+
+export interface Author {
+  url: string;
+  name: string;
+}
+
+export interface Identifiers {
+  isbn_10: string[];
+  isbn_13?: string[];
+  openlibrary: string[];
+}
+
+export interface Publisher {
+  name: string;
+}
+
+export interface Subject {
+  name: string;
+  url: string;
+}
+
+export interface Ebook {
+  preview_url: string;
+  availability: string;
+  formats: Formats;
+  read_url: string;
+}
+
+export interface Formats {
+  pdf: Pdf;
+  epub: Epub;
+  text: Text;
+}
+
+export interface Pdf {
+  url: string;
+}
+
+export interface Epub {
+  url: string;
+}
+
+export interface Text {
+  url: string;
+}
+
+export interface Cover {
+  small: string;
+  medium: string;
+  large: string;
+}
+
 /// /// /// /// /// /// /// /// /// ///
 
 export interface BookObj {
   author: string;
   imageSource: string;
   isbn: number;
-  numberOfPages: null | number;
-  yearPublished: null | number;
+  numberOfPages: null | string;
+  yearPublished: null | string;
   publisher: string;
   title: string;
   link: string;
@@ -59,13 +125,25 @@ export interface BookObj {
   isInProgress: boolean;
 }
 
+export interface BookObjNYT {
+  author: string;
+  imageSource: string;
+  isbn: number;
+  title: string;
+}
+
 export interface nyTimesHomePageListObj {
   listName: string;
-  books: BookObj[];
+  books: BookObjNYT[];
 }
 /* ---------------------------------------- */
 
 export interface State {
+  viewedBook?: BookObj;
+  search: {
+    query: string;
+    result: BookObj | null;
+  };
   nyTimesBestSeller: nyTimesHomePageListObj[];
   library: {
     booksDone: BookObj[];
