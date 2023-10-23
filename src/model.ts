@@ -45,6 +45,32 @@ export const getNyTimesBestSellers = async function (): Promise<nyTimesHomePageL
     throw e as Error;
   }
 };
+
+export const getResultFromSearch = async function (isbn: string): Promise<void> {
+  try {
+    state.search.query = isbn;
+
+    const bookIsInDone = state.library.booksDone.find((book) => book.isbn === Number(isbn));
+    const bookIsInProgress = state.library.booksInProgress.find((book) => book.isbn === Number(isbn));
+    const bookIsInToRead = state.library.booksToRead.find((book) => book.isbn === Number(isbn));
+
+    if (bookIsInDone !== undefined && bookIsInProgress === undefined && bookIsInToRead === undefined)
+      state.search.result = bookIsInDone;
+    else if (bookIsInDone === undefined && bookIsInProgress !== undefined && bookIsInToRead === undefined)
+      state.search.result = bookIsInProgress;
+    else if (bookIsInDone === undefined && bookIsInProgress === undefined && bookIsInToRead !== undefined)
+      state.search.result = bookIsInToRead;
+    else {
+      const openLibrarySearchResult = await getBookObjFromOpenLibrary(isbn);
+      if (openLibrarySearchResult instanceof Error) throw openLibrarySearchResult;
+      state.search.result = openLibrarySearchResult;
+      console.log(openLibrarySearchResult);
+    }
+  } catch (e) {
+    throw e as Error;
+  }
+};
+
 export const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj | Error> {
   try {
     const res = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`);
