@@ -1,4 +1,4 @@
-import type { State, BestSellersData, BookObj, nyTimesHomePageListObj } from "./types";
+import type { State, BestSellersData, BookObjNYT, BookObj, OpenLibraryData } from "./types";
 import { NY_TIMES_API_KEY, NY_TIMES_BEST_SELLERS_URL } from "./config";
 
 export const state: State = {
@@ -14,7 +14,7 @@ export const state: State = {
   }
 };
 
-export const getNyTimesBestSellers = async function (): Promise<nyTimesHomePageListObj[] | Error> {
+export const getNyTimesBestSellers = async function (): Promise<void> {
   try {
     const res = await fetch(`${NY_TIMES_BEST_SELLERS_URL}?api-key=${NY_TIMES_API_KEY}`);
     if (!res.ok || res.status !== 200) throw new Error();
@@ -23,27 +23,18 @@ export const getNyTimesBestSellers = async function (): Promise<nyTimesHomePageL
 
     state.nyTimesBestSeller = overviewBestSellers.map((obj) => {
       const listArea: string = obj.list_name;
-      const booksInArea: BookObj[] = obj.books.map((book) => {
+      const booksInArea: BookObjNYT[] = obj.books.map((book) => {
         return {
           author: book.author,
           imageSource: book.book_image,
           isbn: Number(book.primary_isbn13),
-          numberOfPages: null,
-          yearPublished: null,
-          publisher: book.publisher,
-          title: book.title,
-          link: `https://openlibrary.org/isbn/${book.primary_isbn13}`,
-          isDone: false,
-          isInProgress: false,
-          isToRead: false
+          title: book.title
         };
       });
 
       return { listName: listArea, books: booksInArea };
     });
-
-    const objArray = state.nyTimesBestSeller;
-    return objArray;
+    console.log(state.nyTimesBestSeller);
   } catch (e) {
     (e as Error).message = "Could not get data from server";
     throw e as Error;
@@ -75,18 +66,17 @@ export const getResultFromSearch = async function (isbn: string): Promise<void> 
   }
 };
 
-export const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj | Error> {
+export const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj | null | Error> {
   try {
     const res = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`);
     if (!res.ok || res.status !== 200) throw new Error();
 
     const dataOpenLibrary = await res.json();
+    console.log(dataOpenLibrary);
 
-    if (Object.keys(dataOpenLibrary).length === 0) state.search.result = null;
+    if (Object.keys(dataOpenLibrary).length === 0) return null;
 
     const mainObject: OpenLibraryData = dataOpenLibrary[`ISBN:${isbn}`];
-    console.log(mainObject);
-    console.log(mainObject.publish_date);
 
     // To get author(s)
     const bkAuthor: string = mainObject.authors
