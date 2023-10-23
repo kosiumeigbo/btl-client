@@ -45,3 +45,63 @@ export const getNyTimesBestSellers = async function (): Promise<nyTimesHomePageL
     throw e as Error;
   }
 };
+export const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj | Error> {
+  try {
+    const res = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`);
+    if (!res.ok || res.status !== 200) throw new Error();
+
+    const dataOpenLibrary = await res.json();
+
+    if (Object.keys(dataOpenLibrary).length === 0) state.search.result = null;
+
+    const mainObject: OpenLibraryData = dataOpenLibrary[`ISBN:${isbn}`];
+    console.log(mainObject);
+    console.log(mainObject.publish_date);
+
+    // To get author(s)
+    const bkAuthor: string = mainObject.authors
+      .map((authObj) => {
+        return authObj.name;
+      })
+      .join(", ");
+
+    // To get image source
+    const bkImageSource: string = mainObject.cover.large;
+
+    // To get isbn
+    const bkIsbnArr: string[] = mainObject.identifiers.isbn_13 ?? mainObject.identifiers.isbn_10;
+    const bkIsbn: number = Number(bkIsbnArr[0]);
+
+    // To get pages
+    const bkPages = mainObject.pagination ?? null;
+
+    // To get year published
+    const bkYearPublished = mainObject.publish_date ?? null;
+
+    // To get publisher
+    const bkPublisher = mainObject.publishers.map((publ) => publ.name).join(", ");
+
+    // To get title
+    const bkTitle = mainObject.title;
+
+    // To get link for book
+    const bkLink = mainObject.url;
+
+    return {
+      author: bkAuthor,
+      imageSource: bkImageSource,
+      isbn: bkIsbn,
+      numberOfPages: bkPages,
+      yearPublished: bkYearPublished,
+      publisher: bkPublisher,
+      title: bkTitle,
+      link: bkLink,
+      isToRead: false,
+      isDone: false,
+      isInProgress: false
+    };
+  } catch (e) {
+    (e as Error).message = "Could not get data from server";
+    return e as Error;
+  }
+};
