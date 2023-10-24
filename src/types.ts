@@ -142,7 +142,7 @@ export interface State {
   viewedBook?: BookObj;
   search: {
     query: string;
-    result: BookObj | null;
+    result: BookObj | null | "No result";
   };
   nyTimesBestSeller: nyTimesHomePageListObj[];
   library: {
