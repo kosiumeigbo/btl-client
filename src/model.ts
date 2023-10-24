@@ -79,35 +79,37 @@ export const getBookObjFromOpenLibrary = async function (isbn: string): Promise<
     const mainObject: OpenLibraryData = dataOpenLibrary[`ISBN:${isbn}`];
 
     // To get author(s)
-    const bkAuthor: string = mainObject.authors
-      .map((authObj) => {
+    const bkAuthor =
+      mainObject.authors
+        ?.map((authObj) => {
         return authObj.name;
       })
-      .join(", ");
+        .join(", ") ?? null;
 
     // To get image source
-    const bkImageSource: string = mainObject.cover.large;
+    const bkImageSource = mainObject.cover?.large ?? null;
 
     // To get isbn
-    const bkIsbnArr: string[] = mainObject.identifiers.isbn_13 ?? mainObject.identifiers.isbn_10;
-    const bkIsbn: number = Number(bkIsbnArr[0]);
+    const bkIsbnArr = mainObject.identifiers.isbn_13 ?? mainObject.identifiers.isbn_10;
+    const bkIsbn = Number(bkIsbnArr[0]);
 
     // To get pages
-    const bkPages = mainObject.pagination ?? null;
+    const bkPagesCheck = mainObject.number_of_pages ?? mainObject.pagination ?? null;
+    const bkPages = typeof bkPagesCheck === "number" ? bkPagesCheck.toString() : bkPagesCheck;
 
     // To get year published
     const bkYearPublished = mainObject.publish_date ?? null;
 
     // To get publisher
-    const bkPublisher = mainObject.publishers.map((publ) => publ.name).join(", ");
+    const bkPublisher = mainObject.publishers?.map((publ) => publ.name).join(", ") ?? null;
 
     // To get title
-    const bkTitle = mainObject.title;
+    const bkTitle = mainObject.title ?? null;
 
     // To get link for book
-    const bkLink = mainObject.url;
+    const bkLink = mainObject.url ?? null;
 
-    return {
+    const objToReturn: BookObj = {
       author: bkAuthor,
       imageSource: bkImageSource,
       isbn: bkIsbn,
@@ -120,6 +122,9 @@ export const getBookObjFromOpenLibrary = async function (isbn: string): Promise<
       isDone: false,
       isInProgress: false
     };
+    console.log(objToReturn);
+
+    return objToReturn;
   } catch (e) {
     (e as Error).message = "Could not get data from server";
     return e as Error;
