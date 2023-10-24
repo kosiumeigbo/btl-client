@@ -124,8 +124,8 @@ export const getBookObjFromOpenLibrary = async function (isbn: string): Promise<
     const bkAuthor =
       mainObject.authors
         ?.map((authObj) => {
-        return authObj.name;
-      })
+          return authObj.name;
+        })
         .join(", ") ?? null;
 
     // To get image source
