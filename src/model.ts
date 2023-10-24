@@ -1,5 +1,5 @@
 import type { State, BestSellersData, BookObjNYT, BookObj, OpenLibraryData } from "./types";
-import { NY_TIMES_API_KEY, NY_TIMES_BEST_SELLERS_URL } from "./config";
+import { NY_TIMES_API_KEY, NY_TIMES_BEST_SELLERS_URL, NY_TIMES_API_CALL_LIMIT_SECONDS } from "./config";
 
 export const state: State = {
   viewedBook: "No result",
