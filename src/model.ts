@@ -14,7 +14,7 @@ export const state: State = {
   }
 };
 
-export const getNyTimesBestSellers = async function (): Promise<void> {
+export const updateStateNyTimesBestSeller = async function (): Promise<void> {
   try {
     const res = await fetch(`${NY_TIMES_BEST_SELLERS_URL}?api-key=${NY_TIMES_API_KEY}`);
     if (!res.ok || res.status !== 200) throw new Error();
