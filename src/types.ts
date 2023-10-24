@@ -140,7 +140,7 @@ export interface nyTimesHomePageListObj {
 /* ---------------------------------------- */
 
 export interface State {
-  viewedBook?: BookObj;
+  viewedBook: BookObj | "No result";
   search: {
     query: string;
     result: BookObj | null | "No result";
