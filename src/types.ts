@@ -56,7 +56,7 @@ export interface OpenLibraryData {
   ebooks?: Ebook[];
   cover?: Cover;
   pagination?: string;
-  number_of_pages?: string;
+  number_of_pages?: number;
 }
 
 export interface Author {
