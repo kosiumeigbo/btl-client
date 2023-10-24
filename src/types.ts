@@ -113,14 +113,14 @@ export interface Cover {
 /// /// /// /// /// /// /// /// /// ///
 
 export interface BookObj {
-  author: string;
-  imageSource: string;
+  author: string | null;
+  imageSource: string | null;
   isbn: number;
   numberOfPages: null | string;
   yearPublished: null | string;
-  publisher: string;
-  title: string;
-  link: string;
+  publisher: null | string;
+  title: string | null;
+  link: string | null;
   isToRead: boolean;
   isDone: boolean;
   isInProgress: boolean;
