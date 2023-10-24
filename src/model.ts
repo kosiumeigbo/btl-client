@@ -2,6 +2,7 @@ import type { State, BestSellersData, BookObjNYT, BookObj, OpenLibraryData } fro
 import { NY_TIMES_API_KEY, NY_TIMES_BEST_SELLERS_URL } from "./config";
 
 export const state: State = {
+  viewedBook: "No result",
   nyTimesBestSeller: [],
   search: {
     query: "",
