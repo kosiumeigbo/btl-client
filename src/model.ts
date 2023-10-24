@@ -14,6 +14,9 @@ export const state: State = {
   }
 };
 
+// Function that gets the best sellers list from NYTimes, converts the results acoordingly and
+// saves them as state's nyTimesBestSeller array.
+// If there's an error, then state's nyTimesBestSeller array becomes empty.
 export const updateStateNyTimesBestSeller = async function (): Promise<void> {
   try {
     const res = await fetch(`${NY_TIMES_BEST_SELLERS_URL}?api-key=${NY_TIMES_API_KEY}`);
