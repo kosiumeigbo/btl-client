@@ -66,6 +66,8 @@ export const updateStateSearchResult = async function (isbn: string): Promise<vo
   }
 };
 
+// Function that accepts isbn as string, goes through Open Library to get the book
+// and returns either a BookObj object or "No result", else returns an Error
 export const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj | "No result" | Error> {
   try {
     const res = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`);
