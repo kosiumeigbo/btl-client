@@ -66,7 +66,7 @@ export const updateStateSearchResult = async function (isbn: string): Promise<vo
   }
 };
 
-export const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj | null | Error> {
+export const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj | "No result" | Error> {
   try {
     const res = await fetch(`https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`);
     if (!res.ok || res.status !== 200) throw new Error();
@@ -74,7 +74,7 @@ export const getBookObjFromOpenLibrary = async function (isbn: string): Promise<
     const dataOpenLibrary = await res.json();
     console.log(dataOpenLibrary);
 
-    if (Object.keys(dataOpenLibrary).length === 0) return null;
+    if (Object.keys(dataOpenLibrary).length === 0) return "No result";
 
     const mainObject: OpenLibraryData = dataOpenLibrary[`ISBN:${isbn}`];
 
