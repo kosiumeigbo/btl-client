@@ -59,6 +59,8 @@ export const updateStateSearchResult = async function (isbn: string): Promise<vo
       const openLibrarySearchResult = await getBookObjFromOpenLibrary(isbn);
       if (openLibrarySearchResult instanceof Error) throw openLibrarySearchResult;
       state.search.result = openLibrarySearchResult;
+// Function that accepts isbn as string, goes through Open Library to get the book
+// and updates state's viewed book into a BookObj or "No result", else returns an Error
 export const updateStateViewedBook = async function (isbn: string): Promise<undefined | Error> {
   try {
     const bookIsInDone = state.library.booksDone.find((book) => book.isbn === Number(isbn));
