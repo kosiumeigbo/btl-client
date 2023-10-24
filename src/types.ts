@@ -45,17 +45,18 @@ interface BuyLink {
 }
 
 export interface OpenLibraryData {
-  url: string;
-  key: string;
-  title: string;
-  authors: Author[];
+  url?: string;
+  key?: string;
+  title?: string;
+  authors?: Author[];
   identifiers: Identifiers;
-  publishers: Publisher[];
+  publishers?: Publisher[];
   publish_date?: string;
-  subjects: Subject[];
-  ebooks: Ebook[];
-  cover: Cover;
+  subjects?: Subject[];
+  ebooks?: Ebook[];
+  cover?: Cover;
   pagination?: string;
+  number_of_pages?: string;
 }
 
 export interface Author {
