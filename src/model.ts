@@ -41,7 +41,7 @@ export const getNyTimesBestSellers = async function (): Promise<void> {
   }
 };
 
-export const getResultFromSearch = async function (isbn: string): Promise<void> {
+export const updateStateSearchResult = async function (isbn: string): Promise<void> {
   try {
     state.search.query = isbn;
 
