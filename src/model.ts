@@ -37,6 +37,13 @@ export const getNyTimesBestSellers = async function (): Promise<void> {
     console.log(state.nyTimesBestSeller);
   } catch (e) {
     (e as Error).message = "Could not get data from server";
+const keepUpdatingStateNyTimesBestSeller = async function (): Promise<void> {
+  await updateStateNyTimesBestSeller();
+
+  setInterval(updateStateNyTimesBestSeller, NY_TIMES_API_CALL_LIMIT_SECONDS);
+};
+void keepUpdatingStateNyTimesBestSeller();
+
 // Function that accepts isbn as string, goes through Open Library to get the book
 // and updates state's search object, else returns an Error
 export const updateStateSearchResult = async function (isbn: string): Promise<undefined | Error> {
