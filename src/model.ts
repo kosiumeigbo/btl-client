@@ -59,10 +59,26 @@ export const updateStateSearchResult = async function (isbn: string): Promise<vo
       const openLibrarySearchResult = await getBookObjFromOpenLibrary(isbn);
       if (openLibrarySearchResult instanceof Error) throw openLibrarySearchResult;
       state.search.result = openLibrarySearchResult;
+export const updateStateViewedBook = async function (isbn: string): Promise<undefined | Error> {
+  try {
+    const bookIsInDone = state.library.booksDone.find((book) => book.isbn === Number(isbn));
+    const bookIsInProgress = state.library.booksInProgress.find((book) => book.isbn === Number(isbn));
+    const bookIsInToRead = state.library.booksToRead.find((book) => book.isbn === Number(isbn));
+
+    if (bookIsInDone !== undefined && bookIsInProgress === undefined && bookIsInToRead === undefined)
+      state.viewedBook = bookIsInDone;
+    else if (bookIsInDone === undefined && bookIsInProgress !== undefined && bookIsInToRead === undefined)
+      state.viewedBook = bookIsInProgress;
+    else if (bookIsInDone === undefined && bookIsInProgress === undefined && bookIsInToRead !== undefined)
+      state.viewedBook = bookIsInToRead;
+    else {
+      const openLibrarySearchResult = await getBookObjFromOpenLibrary(isbn);
+      if (openLibrarySearchResult instanceof Error) throw openLibrarySearchResult;
+      state.viewedBook = openLibrarySearchResult;
       console.log(openLibrarySearchResult);
     }
   } catch (e) {
-    throw e as Error;
+    return e as Error;
   }
 };
 
