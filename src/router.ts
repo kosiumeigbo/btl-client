@@ -1,10 +1,7 @@
 // import HomePage from "./components/HomePage.ts";
-import { getNyTimesBestSellers, getBookObjFromOpenLibrary } from "./model.ts";
+import "./components/home-page";
+import { getBookObjFromOpenLibrary } from "./model";
 
-getNyTimesBestSellers().catch((e: Error) => {
-  console.log(e);
-});
-
-getBookObjFromOpenLibrary("9781649374042678").catch((e: Error) => {
+getBookObjFromOpenLibrary("111").catch((e: Error) => {
   console.log(e);
 });

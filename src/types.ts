@@ -121,10 +121,10 @@ export interface BookObj {
   publisher: null | string;
   title: string | null;
   link: string | null;
-  isToRead: boolean;
-  isDone: boolean;
-  isInProgress: boolean;
+  location: LibraryLocation | "not-in-library";
 }
+
+export type LibraryLocation = "booksDone" | "booksInProgress" | "booksToRead";
 
 export interface BookObjNYT {
   author: string;
@@ -143,12 +143,9 @@ export interface State {
   viewedBook: BookObj | "No result";
   search: {
     query: string;
-    result: BookObj | null | "No result";
+    result: BookObj | "No result" | null;
   };
   nyTimesBestSeller: nyTimesHomePageListObj[];
-  library: {
-    booksDone: BookObj[];
-    booksInProgress: BookObj[];
-    booksToRead: BookObj[];
-  };
+  library: BookObj[];
+  locations: LibraryLocation[];
 }
