@@ -5,3 +5,5 @@ server
 .parcel-cache
 testDataNYT.json
 testDataOpenLibrary.json
+src/components/TestComponent.ts
+src/components/OuterTestComponent.ts
