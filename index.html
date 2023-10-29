@@ -4,10 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <!-- <script type="module" src=""></script> -->
+    <link rel="stylesheet" href="./src/styles/main.scss" />
     <script type="module" src="./src/router.ts"></script>
   </head>
   <body>
-    <div id="root"></div>
+    <main>
+      <nav>
+        <div><a href="/">HOME</a></div>
+        <div><a href="/search">SEARCH</a></div>
+        <div>
+          <a href="/library">LIBRARY <span id="lib-total-number"></span></a>
+        </div>
+        <div>
+          <a href="/library/books-in-progress">IN PROGRESS <span id="lib-in-progress"></span></a>
+        </div>
+        <div>
+          <a href="/library/books-to-read">TO READ <span id="lib-to-read"></span></a>
+        </div>
+        <div>
+          <a href="/library/books-done">DONE <span id="lib-done"></span></a>
+        </div>
+      </nav>
+      <div id="root"><home-page /></div>
+    </main>
   </body>
 </html>
