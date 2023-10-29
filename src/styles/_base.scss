@@ -1,0 +1,75 @@
+$screen-xl: 90rem; // 1440px
+$screen-l: 64rem; // 1024px
+$screen-m: 48rem; // 768px
+$screen-s: 26.25rem; // 420px
+$nfc-color: #003069;
+$afc-color: #d60303;
+$header-background-color: #f3f3f3;
+$player-roster-border: #b9c1ba;
+
+@font-face {
+  font-family: AdidasFont;
+  src: url(../assets/fonts/AdihausDIN.ttf);
+}
+
+@mixin respond-xl {
+  @media (max-width: $screen-xl) {
+    @content;
+  }
+}
+
+@mixin respond-l {
+  @media (max-width: $screen-l) {
+    @content;
+  }
+}
+
+@mixin respond-m {
+  @media (max-width: $screen-m) {
+    @content;
+  }
+}
+
+@mixin respond-s {
+  @media (max-width: $screen-s) {
+    @content;
+  }
+}
+
+@mixin respond-any($size) {
+  @media (max-width: $size) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: AdidasFont, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.01rem;
+}
+
+body {
+  width: 100%;
+}
+
+main {
+  width: 100%;
+  // display: grid;
+  // grid-template-columns: 20% 1fr;
+}
+
+nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 20rem;
+  height: 100%;
+  background-color: black;
+  color: $header-background-color;
+}
+
+#root {
+  padding-left: 25rem;
+}
