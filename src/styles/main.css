@@ -1,0 +1,35 @@
+@font-face {
+  font-family: AdidasFont;
+  src: url(../assets/fonts/AdihausDIN.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: AdidasFont, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.01rem;
+}
+
+body {
+  width: 100%;
+}
+
+main {
+  width: 100%;
+}
+
+nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 20rem;
+  height: 100%;
+  background-color: yellow;
+  color: #f3f3f3;
+}
+
+#root {
+  margin-left: 21rem;
+}
+
+/*# sourceMappingURL=main.css.map */
