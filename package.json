@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "parcel index.html --open --dist-dir server"
+    "start": "parcel index.html --open --dist-dir server",
+    "watchSass": "sass --watch src/styles/main.scss src/styles/main.css"
   },
   "keywords": [],
   "author": "",
