@@ -12,6 +12,11 @@ $player-roster-border: #b9c1ba;
   src: url(../assets/fonts/AdihausDIN.ttf);
 }
 
+@font-face {
+  font-family: AdidasFontBold;
+  src: url(../assets/fonts/AdihausDIN-bold.ttf);
+}
+
 @mixin respond-xl {
   @media (max-width: $screen-xl) {
     @content;
