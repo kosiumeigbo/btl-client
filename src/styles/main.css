@@ -2,6 +2,10 @@
   font-family: AdidasFont;
   src: url(../assets/fonts/AdihausDIN.ttf);
 }
+@font-face {
+  font-family: AdidasFontBold;
+  src: url(../assets/fonts/AdihausDIN-bold.ttf);
+}
 * {
   margin: 0;
   padding: 0;
@@ -18,18 +22,43 @@ main {
   width: 100%;
 }
 
-nav {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 20rem;
-  height: 100%;
-  background-color: yellow;
-  color: #f3f3f3;
+#root {
+  margin-left: 16rem;
 }
 
-#root {
-  margin-left: 21rem;
+.nav-bold {
+  font-family: AdidasFontBold;
+  font-weight: 900;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15rem;
+  height: 100%;
+  background-color: rgb(74, 45, 71);
+  color: #f4e9e9;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+nav > div {
+  padding: 0.5rem 0;
+}
+nav > div i {
+  margin-right: 1rem;
+}
+nav > div a {
+  text-decoration: none;
+  color: #f4e9e9;
+}
+nav .sub-library {
+  margin-left: 1rem;
+}
+nav hr {
+  width: 90%;
+  color: #f4e9e9;
 }
 
 /*# sourceMappingURL=main.css.map */
