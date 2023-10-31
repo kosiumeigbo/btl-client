@@ -68,8 +68,7 @@ const updateStateNyTimesBestSeller = async function (): Promise<void> {
 // The function also runs immediately so that there is always something happening to the state's nyTimesBestSeller array
 
 const keepUpdatingStateNyTimesBestSeller = async function (): Promise<void> {
-  updateStateNyTimesBestSeller();
-  console.log("keepupdating is running");
+  await updateStateNyTimesBestSeller();
 
   setInterval(updateStateNyTimesBestSeller, NY_TIMES_API_CALL_LIMIT_SECONDS);
 };
