@@ -4,26 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script src="https://kit.fontawesome.com/897d8674f6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./src/styles/main.css" />
     <script type="module" src="./src/router.ts"></script>
   </head>
   <body>
     <main>
       <nav>
-        <div><a href="/">HOME</a></div>
-        <div><a href="/search">SEARCH</a></div>
+        <div><i class="fa-solid fa-house-user"></i><a class="nav-bold" href="/">Home</a></div>
+        <hr />
+        <hr />
+        <div><i class="fa-solid fa-magnifying-glass"></i><a class="nav-bold" href="/search">Search</a></div>
+        <hr />
+        <hr />
         <div>
-          <a href="/library">LIBRARY <span id="lib-total-number"></span></a>
+          <i class="fa-solid fa-bookmark"></i>
+          <span>
+            <a class="nav-bold" href="/library">Library<span id="library-total">0</span></a>
+          </span>
         </div>
-        <div>
-          <a href="/library/books-in-progress">IN PROGRESS <span id="lib-in-progress"></span></a>
+        <hr />
+        <div class="sub-library">
+          <i class="fa-solid fa-book-open"></i>
+          <span>
+            <a href="/library/books-in-progress">In Progress<span id="books-in-progress-total">0</span></a>
+          </span>
         </div>
-        <div>
-          <a href="/library/books-to-read">TO READ <span id="lib-to-read"></span></a>
+        <div class="sub-library">
+          <i class="fa-solid fa-list"></i>
+          <span>
+            <a href="/library/books-to-read">To Read<span id="books-to-read-total">0</span></a>
+          </span>
         </div>
-        <div>
-          <a href="/library/books-done">DONE <span id="lib-done"></span></a>
+        <div class="sub-library">
+          <i class="fa-solid fa-check"></i>
+          <span>
+            <a href="/library/books-done">Done<span id="books-done-total">0</span></a>
+          </span>
         </div>
+        <hr />
+        <hr />
       </nav>
       <div id="root"><home-page /></div>
     </main>
