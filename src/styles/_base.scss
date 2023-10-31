@@ -59,20 +59,8 @@ body {
 
 main {
   width: 100%;
-  // display: grid;
-  // grid-template-columns: 20% 1fr;
-}
-
-nav {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 20rem;
-  height: 100%;
-  background-color: black;
-  color: $header-background-color;
 }
 
 #root {
-  padding-left: 25rem;
+  margin-left: 16rem;
 }
