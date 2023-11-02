@@ -146,6 +146,6 @@ export interface State {
     result: BookObj | "No result" | null;
   };
   nyTimesBestSeller: nyTimesHomePageListObj[];
-  library: BookObj[];
+  libraryBooks: BookObj[];
   locations: LibraryLocation[];
 }
