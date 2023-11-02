@@ -14,11 +14,13 @@ const state: State = {
 };
 
 // Function takes in the isbn from the data-isbn property and the btnLibrary param is from the data-library property
-// on the pressed button
-const addToLibraryBtnIsPressed = async function (btnDataset: LibraryLocation, isbn: string): Promise<undefined> {
-  try {
-    const bookIndex = state.library.findIndex((bk) => bk.isbn === Number(isbn));
-    if (bookIndex === -1) {
+// on the pressed button. It returns either the 
+const addToLibraryBtnIsPressed = function (btnDataset: LibraryLocation, isbn: string): Error | BookObj {
+  const bookLibraryIndex = state.libraryBooks.findIndex((bk) => bk.isbn === Number(isbn));
+  const bookLibrary = state.libraryBooks.find((bk) => bk.isbn === Number(isbn));
+
+  /*
+    if (bookLibraryIndex === -1) {
       const searchedBk = await getBookObjFromOpenLibrary(isbn);
       if (searchedBk instanceof Error) return;
       if (searchedBk === "No result") return;
@@ -31,7 +33,35 @@ const addToLibraryBtnIsPressed = async function (btnDataset: LibraryLocation, is
         }
       });
     }
-  } catch (e) {}
+  */
+
+  if (bookLibraryIndex !== -1 && bookLibrary !== undefined) {
+    if (bookLibrary.location === btnDataset) {
+      bookLibrary.location = "not-in-library";
+
+      const [updatedBk] = state.libraryBooks.splice(bookLibraryIndex, 1);
+      state.nonLibraryBooks.push(updatedBk);
+
+      return updatedBk;
+    }
+
+    bookLibrary.location = btnDataset;
+    return bookLibrary;
+  }
+
+  const bookNonLibraryIndex = state.nonLibraryBooks.findIndex((bk) => bk.isbn === Number(isbn));
+  const bookNonLibrary = state.nonLibraryBooks.find((bk) => bk.isbn === Number(isbn));
+
+  if (bookNonLibraryIndex !== -1 && bookNonLibrary !== undefined) {
+    bookNonLibrary.location = btnDataset;
+
+    const [updatedBk] = state.nonLibraryBooks.splice(bookNonLibraryIndex, 1);
+    state.libraryBooks.push(updatedBk);
+
+    return updatedBk;
+  }
+
+  return new Error();
 };
 
 // Function that gets the best sellers list from NYTimes, converts the results acoordingly and
@@ -86,14 +116,21 @@ const updateStateSearchResult = async function (isbn: string = state.search.quer
     }
     state.search.query = isbn;
 
-    const bookInLibrary = state.library.find((book) => book.isbn === Number(isbn));
+    const bookInLibrary = state.libraryBooks.find((book) => book.isbn === Number(isbn));
+    const bookNotInLibrary = state.nonLibraryBooks.find((book) => book.isbn === Number(isbn));
 
     if (bookInLibrary !== undefined) {
       state.search.result = bookInLibrary;
+    } else if (bookNotInLibrary !== undefined) {
+      state.search.result = bookNotInLibrary;
     } else {
       const openLibrarySearchResult = await getBookObjFromOpenLibrary(isbn);
       if (openLibrarySearchResult instanceof Error) throw openLibrarySearchResult;
       state.search.result = openLibrarySearchResult;
+
+      if (typeof openLibrarySearchResult !== "string") {
+        state.nonLibraryBooks.push(openLibrarySearchResult);
+      }
     }
   } catch (e) {
     return e as Error;
@@ -105,14 +142,21 @@ const updateStateSearchResult = async function (isbn: string = state.search.quer
 // Will run when BookPage is first loaded. The isbn param is taken from the isbn query parameter on the URL
 const updateStateViewedBook = async function (isbn: string): Promise<undefined | Error> {
   try {
-    const bookInLibrary = state.library.find((book) => book.isbn === Number(isbn));
+    const bookInLibrary = state.libraryBooks.find((book) => book.isbn === Number(isbn));
+    const bookNotInLibrary = state.nonLibraryBooks.find((book) => book.isbn === Number(isbn));
 
     if (bookInLibrary !== undefined) {
       state.viewedBook = bookInLibrary;
+    } else if (bookNotInLibrary !== undefined) {
+      state.viewedBook = bookNotInLibrary;
     } else {
       const openLibrarySearchResult = await getBookObjFromOpenLibrary(isbn);
       if (openLibrarySearchResult instanceof Error) throw openLibrarySearchResult;
       state.viewedBook = openLibrarySearchResult;
+
+      if (typeof openLibrarySearchResult !== "string") {
+        state.nonLibraryBooks.push(openLibrarySearchResult);
+      }
     }
   } catch (e) {
     return e as Error;
