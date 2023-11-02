@@ -8,7 +8,8 @@ const state: State = {
     query: "",
     result: null
   },
-  library: [],
+  libraryBooks: [],
+  nonLibraryBooks: [],
   locations: ["booksDone", "booksInProgress", "booksToRead"]
 };
 
