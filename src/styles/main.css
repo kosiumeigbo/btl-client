@@ -23,7 +23,13 @@ main {
 }
 
 #root {
-  margin-left: 16rem;
+  margin-left: 15rem;
+  padding: 1rem;
+}
+@media (max-width: 26.25rem) {
+  #root {
+    margin-left: 0rem;
+  }
 }
 
 .nav-bold {
@@ -43,21 +49,35 @@ nav {
   padding-left: 1rem;
   padding-right: 1rem;
 }
-nav > div {
+@media (max-width: 26.25rem) {
+  nav {
+    display: none;
+  }
+}
+nav div {
   padding: 0.5rem 0;
 }
-nav > div i {
+nav div i {
   margin-right: 1rem;
 }
-nav > div a {
+nav div a {
   text-decoration: none;
   color: #f4e9e9;
 }
+nav .library {
+  margin-right: 1rem;
+}
 nav .sub-library {
-  margin-left: 1rem;
+  margin: 0 1rem;
+}
+nav .library,
+nav .sub-library {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 nav hr {
-  width: 90%;
+  width: 100%;
   color: #f4e9e9;
 }
 
