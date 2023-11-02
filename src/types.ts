@@ -147,5 +147,6 @@ export interface State {
   };
   nyTimesBestSeller: nyTimesHomePageListObj[];
   libraryBooks: BookObj[];
+  nonLibraryBooks: BookObj[];
   locations: LibraryLocation[];
 }
