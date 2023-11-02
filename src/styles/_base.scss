@@ -62,5 +62,10 @@ main {
 }
 
 #root {
-  margin-left: 16rem;
+  margin-left: 15rem;
+  padding: 1rem;
+
+  @include respond-s() {
+    margin-left: 0rem;
+  }
 }
