@@ -1,6 +1,6 @@
 import type { BookObjNYT } from "../types";
 
-export default class NytBookCard extends HTMLElement{
+export default class NytBookCard extends HTMLElement {
   _data!: BookObjNYT;
 
   constructor() {
@@ -24,10 +24,11 @@ export default class NytBookCard extends HTMLElement{
 
   getMarkUp(): string {
     return `
-      <h1>This is the author name: ${this._data.author}</h1>
-      <h1>This book isbn is: ${this._data.isbn}</h1>
-      <h1>This book title is: ${this._data.title}</h1>
-      <img src="${this._data.imageSource}"/>
+      <a href="/book?isbn=${this._data.isbn}">
+        <div><img src="${this._data.imageSource}" alt="${this._data.title} by ${this._data.author} cover photo" /></div>
+        <p>${this._data.title}</p>
+        <p>by <span>${this._data.author}</span></p>
+      </a>
       `;
   }
 }

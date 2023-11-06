@@ -33,12 +33,14 @@ export default class NytCategoryCard extends HTMLElement {
 
   getMarkUp(): string {
     return `
-      <h1>This is the category title: ${this._data.listName}</h1>
-      ${this._data.books
-        .map((bk) => {
-          return `<nyt-book-card></nyt-book-card>`;
-        })
-        .join("")}
+        <h2>${this._data.listName}</h2>
+        <div>
+        ${this._data.books
+          .map((bk) => {
+            return `<nyt-book-card class="nyt-book-card"></nyt-book-card>`;
+          })
+          .join("")}
+        </div>
       `;
   }
 }

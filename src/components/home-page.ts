@@ -8,6 +8,7 @@ export class HomePage extends HTMLElement {
 
   constructor() {
     super();
+    this.classList.add("home-page");
   }
 
   get data(): nyTimesHomePageListObj[] {
@@ -46,16 +47,16 @@ export class HomePage extends HTMLElement {
 
   getMarkUp(): string {
     if (this._data.length === 0) {
-      return `Oopssiee. You have reached the maximum limit for caling the NYTimes API Endpoint.
-      Please wait a few minutes`;
+      return `Oops. You have reached the limit for calling the NYTimes API Endpoint.`;
     }
 
     return `
-    ${this._data
-      .map((obj) => {
-        return `<nyt-category-card></nyt-category-card>`;
-      })
-      .join("")}
+      <h1>NY Times Best Sellers for this week</h1>
+      ${this._data
+        .map((obj) => {
+          return `<nyt-category-card class="nyt-category-card" style="margin-bottom: 10rem"></nyt-category-card>`;
+        })
+        .join("")}
     `;
   }
 }
