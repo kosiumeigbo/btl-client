@@ -39,7 +39,7 @@ $nav-background: rgb(74, 45, 71);
   }
 }
 
-@mixin respond-any($size) {
+@mixin respond($size) {
   @media (max-width: $size) {
     @content;
   }
@@ -61,11 +61,65 @@ main {
   width: 100%;
 }
 
+.nav-bold {
+  font-family: AdidasFontBold;
+  font-weight: 900;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15rem;
+  height: 100%;
+  background-color: $nav-background;
+  color: $nav-text-color;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  @include respond-m {
+    display: none;
+  }
+
+  div {
+    padding: 0.5rem 0;
+    i {
+      margin-right: 1rem;
+    }
+
+    a {
+      text-decoration: none;
+      color: $nav-text-color;
+    }
+  }
+
+  .library {
+    margin-right: 1rem;
+  }
+
+  .sub-library {
+    margin: 0 1rem;
+  }
+
+  .library,
+  .sub-library {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  hr {
+    width: 100%;
+    color: $nav-text-color;
+  }
+}
+
 #root {
   margin-left: 15rem;
   padding: 1rem;
 
-  @include respond-s() {
+  @include respond-m() {
     margin-left: 0rem;
   }
 }
