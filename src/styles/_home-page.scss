@@ -1,0 +1,104 @@
+@use "base";
+
+.home-page {
+  > h1 {
+    font-family: AdidasFontBold;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-align: center;
+
+    @include base.respond-s() {
+      font-size: 1rem;
+    }
+  }
+}
+
+.nyt-category-card {
+  padding: 2rem;
+
+  > h2 {
+    text-align: center;
+    font-style: italic;
+    font-size: 2rem;
+
+    @include base.respond-m() {
+      font-size: 1.5rem;
+    }
+
+    @include base.respond-s() {
+      font-size: 1rem;
+    }
+  }
+
+  > div {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 1rem;
+    margin-top: 0rem;
+    overflow-x: auto;
+
+    @include base.respond-s() {
+      grid-template-columns: 1fr;
+      row-gap: 1rem;
+    }
+  }
+}
+
+.nyt-book-card {
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-decoration: none;
+
+    > div {
+      height: 20rem;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: center;
+
+      @include base.respond-xl() {
+        width: 60%;
+        margin-bottom: 0.3rem;
+        height: 10rem;
+      }
+
+      @include base.respond-l() {
+        width: 60%;
+        margin-bottom: 0.3rem;
+        height: 8rem;
+      }
+
+      @include base.respond(529px) {
+        width: 60%;
+        margin-bottom: 0.3rem;
+        height: 6rem;
+      }
+
+      @include base.respond-s() {
+        width: 60%;
+        margin-bottom: 0.3rem;
+        height: 8rem;
+      }
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  p {
+    text-align: center;
+    color: black;
+    word-break: break-word;
+
+    @include base.respond-m() {
+      font-size: 0.8rem;
+    }
+
+    span {
+      font-style: italic;
+    }
+  }
+}
