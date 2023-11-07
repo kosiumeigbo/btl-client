@@ -101,7 +101,11 @@
     word-break: break-word;
 
     @include base.respond-m() {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
+    }
+
+    @include base.respond-s() {
+      font-size: 0.6rem;
     }
 
     span {
