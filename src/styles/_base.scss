@@ -116,6 +116,43 @@ nav {
   }
 }
 
+.hamburger-clicked {
+  left: 0;
+}
+
+.close-btn {
+  display: none;
+
+  @include respond-m() {
+    display: block;
+    position: absolute;
+    right: 20px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.hamburger {
+  display: none;
+  margin-top: 1rem;
+  margin-left: 1rem;
+
+  @include respond-m() {
+    display: block;
+  }
+
+  i {
+    border: 1px solid black;
+    padding: 2px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
 #root {
   margin-left: 15rem;
   padding: 1rem;
