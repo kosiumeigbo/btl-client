@@ -54,7 +54,7 @@ export class HomePage extends HTMLElement {
       <h1>NY Times Best Sellers for this week</h1>
       ${this._data
         .map((obj) => {
-          return `<nyt-category-card class="nyt-category-card" style="margin-bottom: 10rem"></nyt-category-card>`;
+          return `<nyt-category-card></nyt-category-card>`;
         })
         .join("")}
     `;
