@@ -56,6 +56,17 @@
     align-items: center;
     justify-content: flex-start;
     text-decoration: none;
+    border: 1px solid base.$nav-text-color;
+    padding: 0.5rem 0rem;
+    transition: border 0.3s;
+
+    @include base.respond-s {
+      margin-inline: auto;
+    }
+
+    &:hover {
+      border-color: black;
+    }
 
     > div {
       height: 20rem;
