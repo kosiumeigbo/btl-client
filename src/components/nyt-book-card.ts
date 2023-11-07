@@ -5,6 +5,7 @@ export default class NytBookCard extends HTMLElement {
 
   constructor() {
     super();
+    this.classList.add("nyt-book-card");
   }
 
   get data(): BookObjNYT {
