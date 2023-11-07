@@ -26,6 +26,7 @@
     text-align: center;
     font-style: italic;
     font-size: 2rem;
+    margin-top: 3rem;
 
     @include base.respond-m() {
       font-size: 1.5rem;
