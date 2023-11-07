@@ -79,7 +79,8 @@ nav {
   padding-right: 1rem;
 
   @include respond-m {
-    display: none;
+    left: -15rem;
+    max-width: 90%;
   }
 
   div {
