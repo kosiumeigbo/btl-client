@@ -92,14 +92,15 @@ nav hr {
     font-size: 1rem;
   }
 }
-
-.nyt-category-card {
-  padding: 2rem;
+.home-page .nyt-category-card:first-of-type > h2 {
+  margin-top: 0.5rem;
 }
+
 .nyt-category-card > h2 {
   text-align: center;
   font-style: italic;
   font-size: 2rem;
+  margin-top: 3rem;
 }
 @media (max-width: 48rem) {
   .nyt-category-card > h2 {
@@ -176,7 +177,12 @@ nav hr {
 }
 @media (max-width: 48rem) {
   .nyt-book-card p {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 26.25rem) {
+  .nyt-book-card p {
+    font-size: 0.6rem;
   }
 }
 .nyt-book-card p span {
