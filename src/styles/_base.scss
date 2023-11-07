@@ -77,6 +77,7 @@ nav {
   padding-top: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  transition: left 0.3s;
 
   @include respond-m {
     left: -15rem;
