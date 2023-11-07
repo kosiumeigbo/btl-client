@@ -11,6 +11,12 @@
       font-size: 1rem;
     }
   }
+
+  .nyt-category-card:first-of-type {
+    > h2 {
+      margin-top: 0.5rem;
+    }
+  }
 }
 
 .nyt-category-card {
