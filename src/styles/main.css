@@ -41,7 +41,8 @@ nav {
 }
 @media (max-width: 48rem) {
   nav {
-    display: none;
+    left: -15rem;
+    max-width: 90%;
   }
 }
 nav div {
@@ -69,6 +70,42 @@ nav .sub-library {
 nav hr {
   width: 100%;
   color: #f4e9e9;
+}
+
+.hamburger-clicked {
+  left: 0;
+}
+
+.close-btn {
+  display: none;
+}
+@media (max-width: 48rem) {
+  .close-btn {
+    display: block;
+    position: absolute;
+    right: 20px;
+  }
+}
+.close-btn:hover {
+  cursor: pointer;
+}
+
+.hamburger {
+  display: none;
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+@media (max-width: 48rem) {
+  .hamburger {
+    display: block;
+  }
+}
+.hamburger i {
+  border: 1px solid black;
+  padding: 2px;
+}
+.hamburger i:hover {
+  cursor: pointer;
 }
 
 #root {
@@ -132,6 +169,17 @@ nav hr {
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
+  border: 1px solid #f4e9e9;
+  padding: 0.5rem 0rem;
+  transition: border 0.3s;
+}
+@media (max-width: 26.25rem) {
+  .nyt-book-card a {
+    margin-inline: auto;
+  }
+}
+.nyt-book-card a:hover {
+  border-color: black;
 }
 .nyt-book-card a > div {
   height: 20rem;
