@@ -7,6 +7,7 @@ export default class NytCategoryCard extends HTMLElement {
 
   constructor() {
     super();
+    this.classList.add("nyt-category-card");
   }
 
   get data(): nyTimesHomePageListObj {
@@ -37,7 +38,7 @@ export default class NytCategoryCard extends HTMLElement {
         <div>
         ${this._data.books
           .map((bk) => {
-            return `<nyt-book-card class="nyt-book-card"></nyt-book-card>`;
+            return `<nyt-book-card></nyt-book-card>`;
           })
           .join("")}
         </div>
