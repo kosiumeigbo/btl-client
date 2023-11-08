@@ -1,4 +1,3 @@
-// import HomePage from "./components/HomePage.ts";
 import "./components/home-page";
 import { getBookObjFromOpenLibrary } from "./model";
 import "./hamburgerControl";
