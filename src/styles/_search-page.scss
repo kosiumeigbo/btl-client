@@ -1,0 +1,74 @@
+@use "base";
+
+.search-page {
+  .search-area {
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+  }
+
+  .search-results {
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+  }
+}
+
+#search-form {
+  > label {
+    font-size: 3rem;
+
+    @include base.respond-m {
+      font-size: 2rem;
+    }
+  }
+
+  > div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    @include base.respond-m {
+      flex-direction: column;
+    }
+
+    input {
+      width: 50%;
+      font-size: 1.5rem;
+      outline: none;
+      padding: 0.3rem 0.1rem;
+      height: 3rem;
+      margin-right: 1rem;
+      border: 2px solid black;
+      border-radius: 5px;
+
+      @include base.respond-m {
+        width: 100%;
+        margin-bottom: 1rem;
+        margin-right: 0;
+        font-size: 1.5rem;
+      }
+    }
+
+    button {
+      width: 15rem;
+      font-size: 1.5rem;
+      padding: 0.3rem 0.1rem;
+      height: 3rem;
+      outline: none;
+      border-radius: 0px;
+      border: 2px solid base.$nav-text-color;
+      transition: background-color 0.25s, color 0.25s;
+
+      @include base.respond-m {
+        width: 100%;
+        font-size: 1.3rem;
+      }
+
+      &:hover {
+        background-color: base.$nav-background;
+        cursor: pointer;
+        color: base.$nav-text-color;
+      }
+    }
+  }
+}
