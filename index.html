@@ -6,7 +6,7 @@
     <title>Document</title>
     <script src="https://kit.fontawesome.com/897d8674f6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./src/styles/main.css" />
-    <script type="module" src="./src/router.ts"></script>
+    <script type="module" src="./src/index.ts"></script>
   </head>
   <body>
     <main>
@@ -52,7 +52,24 @@
       </nav>
       <p class="hamburger"><i class="fa-solid fa-bars"></i></p>
       <div id="root">
-        <home-page/>
+        <div class="search-page">
+          <div class="search-area">
+            <form id="search-form">
+              <label for="book-search">Search by book ISBN:</label>
+              <div>
+                <input type="text" id="book-search" name="book-search" autocomplete="off" />
+                <button type="submit" id="book-search-btn">FIND BOOK</button>
+              </div>
+            </form>
+          </div>
+          <hr />
+          <div class="search-results"></div>
+        </div>
+
+        <!-- <home-page /> -->
+
+        <!-- HOMEPAGE  -->
+
         <!-- <div class="category-card">
           <h2>Fiction</h2>
           <div>
@@ -93,6 +110,8 @@
             </div>
           </div>
         </div> -->
+
+        <!--  -->
       </div>
     </main>
   </body>
