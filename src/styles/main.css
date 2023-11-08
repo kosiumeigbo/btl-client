@@ -38,11 +38,11 @@ nav {
   padding-top: 1rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  transition: left 0.3s;
 }
 @media (max-width: 48rem) {
   nav {
     left: -15rem;
-    max-width: 90%;
   }
 }
 nav div {
@@ -235,6 +235,74 @@ nav hr {
 }
 .nyt-book-card p span {
   font-style: italic;
+}
+
+.search-page .search-area {
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
+.search-page .search-results {
+  margin-top: 2rem;
+  margin-bottom: 5rem;
+}
+
+#search-form > label {
+  font-size: 3rem;
+}
+@media (max-width: 48rem) {
+  #search-form > label {
+    font-size: 2rem;
+  }
+}
+#search-form > div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+@media (max-width: 48rem) {
+  #search-form > div {
+    flex-direction: column;
+  }
+}
+#search-form > div input {
+  width: 50%;
+  font-size: 1.5rem;
+  outline: none;
+  padding: 0.3rem 0.1rem;
+  height: 3rem;
+  margin-right: 1rem;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+@media (max-width: 48rem) {
+  #search-form > div input {
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-right: 0;
+    font-size: 1.5rem;
+  }
+}
+#search-form > div button {
+  width: 15rem;
+  font-size: 1.5rem;
+  padding: 0.3rem 0.1rem;
+  height: 3rem;
+  outline: none;
+  border-radius: 0px;
+  border: 2px solid #f4e9e9;
+  transition: background-color 0.25s, color 0.25s;
+}
+@media (max-width: 48rem) {
+  #search-form > div button {
+    width: 100%;
+    font-size: 1.3rem;
+  }
+}
+#search-form > div button:hover {
+  background-color: rgb(74, 45, 71);
+  cursor: pointer;
+  color: #f4e9e9;
 }
 
 /*# sourceMappingURL=main.css.map */
