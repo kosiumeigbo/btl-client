@@ -1,4 +1,4 @@
-const hamburgerButton = document.querySelector(".hamburger");
+const hamburgerButton = document.querySelector(".hamburger i");
 const navSection = document.querySelector("nav");
 const closeBtn = document.querySelector(".close-btn");
 
