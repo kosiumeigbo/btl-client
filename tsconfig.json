@@ -107,5 +107,5 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["src/components/OuterTestComponent.ts", "src/components/TestComponent.ts", "src/testDataHomePage.ts"]
+  "exclude": ["src/components/OuterTestComponent.ts", "src/components/TestComponent.ts", "src/testData.ts"]
 }
