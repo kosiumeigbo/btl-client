@@ -3,6 +3,6 @@ dist
 server
 .DS_Store
 .parcel-cache
-testDataHomePage.ts
+testData.ts
 src/components/TestComponent.ts
 src/components/OuterTestComponent.ts
