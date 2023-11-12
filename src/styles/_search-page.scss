@@ -9,6 +9,9 @@
   .search-results {
     margin-top: 2rem;
     margin-bottom: 5rem;
+    width: min(90%, base.$screen-xl);
+    margin-inline: auto;
+    word-wrap: break-word;
   }
 }
 
