@@ -4,6 +4,9 @@
   .search-area {
     margin-top: 5rem;
     margin-bottom: 2rem;
+    width: min(90%, base.$screen-xl);
+    margin-inline: auto;
+    word-wrap: break-word;
   }
 
   .search-results {
