@@ -1,0 +1,20 @@
+@use "base";
+
+.hamburger {
+  display: none;
+  margin-top: 1rem;
+  margin-left: 1rem;
+
+  @include base.respond-m() {
+    display: block;
+  }
+
+  i {
+    border: 1px solid black;
+    padding: 2px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

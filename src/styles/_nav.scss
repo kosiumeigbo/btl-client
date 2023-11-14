@@ -1,0 +1,83 @@
+@use "base";
+
+.nav-bold {
+  font-family: ClashGroteskSemiBold, sans-serif, Arial, Helvetica;
+}
+
+nav {
+  font-family: ClashGroteskRegular, sans-serif, Arial, Helvetica;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15rem;
+  height: 100%;
+  background-color: base.$nav-background;
+  color: base.$nav-text-color;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  transition: left 0.3s;
+
+  @include base.respond-m {
+    left: -15rem;
+  }
+
+  > div {
+    &:hover {
+      cursor: pointer;
+      background-color: base.$nav-hover-background;
+    }
+
+    > a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 0.5rem 0.2rem;
+      text-decoration: none;
+      color: base.$nav-text-color;
+
+      i {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  .library {
+    padding-right: 1rem;
+  }
+
+  .sub-library {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .library,
+  .sub-library {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  hr {
+    width: 100%;
+    color: base.$nav-text-color;
+  }
+}
+
+.close-btn {
+  display: none;
+
+  @include base.respond-m() {
+    display: block;
+    position: absolute;
+    right: 20px;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.hamburger-clicked {
+  left: 0;
+}
