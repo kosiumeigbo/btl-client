@@ -77,13 +77,52 @@
             <form id="search-form">
               <label for="book-search">Search by book ISBN:</label>
               <div>
-                <input type="text" id="book-search" name="book-search" autocomplete="off" />
+                <input type="text" id="book-search" name="book-search" autocomplete="off" value="14097617759" />
                 <button type="submit" id="book-search-btn">FIND BOOK</button>
               </div>
             </form>
           </div>
+
           <hr />
-          <div class="search-results"></div>
+
+          <div class="search-results">
+            <div class="book-obj-card" style="margin-bottom: 100px">
+              <div class="book-img">
+                <a href="/book"><img src="https://covers.openlibrary.org/b/id/14097617-L.jpg" alt="John Grisham" /></a>
+              </div>
+              <div class="book-info">
+                <h2>This book</h2>
+                <p>is a man</p>
+                <div class="library-buttons">
+                  <button data-isbn="140976177594" data-library="booksInProgress">
+                    <i class="fa-solid fa-circle-plus"></i> In Progress
+                  </button>
+                  <button data-isbn="140976177594" data-library="booksToRead">
+                    <i class="fa-solid fa-circle-plus"></i> To Read
+                  </button>
+                  <button data-isbn="140976177594" data-library="booksDone">
+                    <i class="fa-solid fa-circle-plus"></i> Done
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="book-obj-card">
+              <div class="book-img">
+                <a href="/book"><img src="https://covers.openlibrary.org/b/id/14097617-L.jpg" alt="John Grisham" /></a>
+              </div>
+              <div class="book-info">
+                <h2>This book</h2>
+                <p>is a man</p>
+                <div class="library-buttons">
+                  <button><i class="fa-regular fa-circle-check" style="color: #2aff1c;"></i> In Progress</button>
+                  <button><i class="fa-regular fa-circle-check" style="color: #2aff1c;"></i> To Read</button>
+                  <button><i class="fa-regular fa-circle-check" style="color: #2aff1c;"></i> Done</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
         <!-- <home-page /> -->
