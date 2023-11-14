@@ -15,6 +15,36 @@ $nav-background: rgb(74, 45, 71);
   src: url(../assets/fonts/AdihausDIN-bold.ttf);
 }
 
+@font-face {
+  font-family: ClashGroteskExtraLight;
+  src: url(../assets/fonts/ClashGrotesk-Extralight.otf);
+}
+
+@font-face {
+  font-family: ClashGroteskLight;
+  src: url(../assets/fonts/ClashGrotesk-Light.otf);
+}
+
+@font-face {
+  font-family: ClashGroteskRegular;
+  src: url(../assets/fonts/ClashGrotesk-Regular.otf);
+}
+
+@font-face {
+  font-family: ClashGroteskMedium;
+  src: url(../assets/fonts/ClashGrotesk-Medium.otf);
+}
+
+@font-face {
+  font-family: ClashGroteskSemiBold;
+  src: url(../assets/fonts/ClashGrotesk-Semibold.otf);
+}
+
+@font-face {
+  font-family: ClashGroteskBold;
+  src: url(../assets/fonts/ClashGrotesk-Bold.otf);
+}
+
 @mixin respond-xl {
   @media (max-width: $screen-xl) {
     @content;
