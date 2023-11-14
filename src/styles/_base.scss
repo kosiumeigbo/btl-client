@@ -4,6 +4,7 @@ $screen-m: 48rem; // 768px
 $screen-s: 26.25rem; // 420px
 $nav-text-color: #f4e9e9;
 $nav-background: rgb(74, 45, 71);
+$nav-hover-background: rgb(155, 94, 149);
 
 @font-face {
   font-family: AdidasFont;
@@ -79,8 +80,8 @@ $nav-background: rgb(74, 45, 71);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: AdidasFont, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  letter-spacing: 0.01rem;
+  font-family: ClashGroteskRegular, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.05rem;
 }
 
 body {
