@@ -1,4 +1,4 @@
-// import { state } from "../model";
+import { state } from "../model";
 import type { BookObj } from "../types";
 
 export class SearchPage extends HTMLElement {
@@ -23,4 +23,10 @@ export class SearchPage extends HTMLElement {
       this._data = data;
     }
   }
+
+  connectedCallback(): void {
+    this.data = state.search;
+  }
 }
+
+customElements.define("search-page", SearchPage);
