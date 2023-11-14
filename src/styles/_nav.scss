@@ -23,9 +23,15 @@ nav {
   }
 
   > div {
+    margin: 0.5rem 0;
+    transition:
+      background-color 0.3s,
+      border-radius 0.3s;
+
     &:hover {
       cursor: pointer;
       background-color: base.$nav-hover-background;
+      border-radius: 0.5rem;
     }
 
     > a {
