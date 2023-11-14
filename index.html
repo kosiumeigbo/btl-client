@@ -12,40 +12,60 @@
     <main>
       <nav>
         <div class="close-btn">X</div>
-        <div><i class="fa-solid fa-house-user"></i><a class="nav-bold" href="/">Home</a></div>
-        <hr />
-        <hr />
-        <div><i class="fa-solid fa-magnifying-glass"></i><a class="nav-bold" href="/search">Search</a></div>
-        <hr />
-        <hr />
-        <div class="library">
-          <span>
-            <i class="fa-solid fa-bookmark"></i>
-            <a class="nav-bold" href="/library">Library</a>
-          </span>
-          <span id="library-total">0</span>
+        <div>
+          <a class="nav-bold" href="/"><i class="fa-solid fa-house-user"></i>Home</a>
         </div>
+
         <hr />
-        <div class="sub-library">
-          <span>
-            <i class="fa-solid fa-book-open"></i>
-            <a href="/library/books-in-progress">In Progress</a>
-          </span>
-          <span id="books-in-progress-total">0</span>
+        <hr />
+
+        <div>
+          <a class="nav-bold" href="/search"><i class="fa-solid fa-magnifying-glass"></i>Search</a>
         </div>
-        <div class="sub-library">
-          <span>
-            <i class="fa-solid fa-list"></i>
-            <a href="/library/books-to-read">To Read</a>
-          </span>
-          <span id="books-to-read-total">0</span>
+
+        <hr />
+        <hr />
+
+        <div>
+          <a class="nav-bold library" href="/library">
+            <span>
+              <i class="fa-solid fa-bookmark"></i>
+              Library
+            </span>
+            <span id="library-total">0</span>
+          </a>
         </div>
-        <div class="sub-library">
-          <span>
-            <i class="fa-solid fa-check"></i>
-            <a href="/library/books-done">Done</a>
-          </span>
-          <span id="books-done-total">0</span>
+
+        <hr />
+
+        <div>
+          <a href="/library/books-in-progress" class="sub-library">
+            <span>
+              <i class="fa-solid fa-book-open"></i>
+              In Progress
+            </span>
+            <span id="books-in-progress-total">0</span>
+          </a>
+        </div>
+
+        <div>
+          <a href="/library/books-to-read" class="sub-library">
+            <span>
+              <i class="fa-solid fa-list"></i>
+              To Read
+            </span>
+            <span id="books-to-read-total">0</span>
+          </a>
+        </div>
+
+        <div>
+          <a href="/library/books-done" class="sub-library">
+            <span>
+              <i class="fa-solid fa-check"></i>
+              Done
+            </span>
+            <span id="books-done-total">0</span>
+          </a>
         </div>
         <hr />
         <hr />
