@@ -6,12 +6,35 @@
   font-family: AdidasFontBold;
   src: url(../assets/fonts/AdihausDIN-bold.ttf);
 }
+@font-face {
+  font-family: ClashGroteskExtraLight;
+  src: url(../assets/fonts/ClashGrotesk-Extralight.otf);
+}
+@font-face {
+  font-family: ClashGroteskLight;
+  src: url(../assets/fonts/ClashGrotesk-Light.otf);
+}
+@font-face {
+  font-family: ClashGroteskRegular;
+  src: url(../assets/fonts/ClashGrotesk-Regular.otf);
+}
+@font-face {
+  font-family: ClashGroteskMedium;
+  src: url(../assets/fonts/ClashGrotesk-Medium.otf);
+}
+@font-face {
+  font-family: ClashGroteskSemiBold;
+  src: url(../assets/fonts/ClashGrotesk-Semibold.otf);
+}
+@font-face {
+  font-family: ClashGroteskBold;
+  src: url(../assets/fonts/ClashGrotesk-Bold.otf);
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: AdidasFont, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  letter-spacing: 0.01rem;
+  letter-spacing: 0.05rem;
 }
 
 body {
@@ -22,12 +45,22 @@ main {
   width: 100%;
 }
 
+#root {
+  margin-left: 15rem;
+  padding: 1rem;
+}
+@media (max-width: 48rem) {
+  #root {
+    margin-left: 0rem;
+  }
+}
+
 .nav-bold {
-  font-family: AdidasFontBold;
-  font-weight: 900;
+  font-family: ClashGroteskSemiBold, sans-serif, Arial, Helvetica;
 }
 
 nav {
+  font-family: ClashGroteskRegular, sans-serif, Arial, Helvetica;
   position: fixed;
   top: 0;
   left: 0;
@@ -45,21 +78,32 @@ nav {
     left: -15rem;
   }
 }
-nav div {
-  padding: 0.5rem 0;
+nav > div {
+  margin: 0.5rem 0;
+  transition: background-color 0.3s, border-radius 0.3s;
 }
-nav div i {
-  margin-right: 1rem;
+nav > div:hover {
+  cursor: pointer;
+  background-color: rgb(155, 94, 149);
+  border-radius: 0.5rem;
 }
-nav div a {
+nav > div > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 0.2rem;
   text-decoration: none;
   color: #f4e9e9;
 }
-nav .library {
+nav > div > a i {
   margin-right: 1rem;
 }
+nav .library {
+  padding-right: 1rem;
+}
 nav .sub-library {
-  margin: 0 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 nav .library,
 nav .sub-library {
@@ -70,10 +114,6 @@ nav .sub-library {
 nav hr {
   width: 100%;
   color: #f4e9e9;
-}
-
-.hamburger-clicked {
-  left: 0;
 }
 
 .close-btn {
@@ -88,6 +128,10 @@ nav hr {
 }
 .close-btn:hover {
   cursor: pointer;
+}
+
+.hamburger-clicked {
+  left: 0;
 }
 
 .hamburger {
@@ -108,18 +152,8 @@ nav hr {
   cursor: pointer;
 }
 
-#root {
-  margin-left: 15rem;
-  padding: 1rem;
-}
-@media (max-width: 48rem) {
-  #root {
-    margin-left: 0rem;
-  }
-}
-
 .home-page > h1 {
-  font-family: AdidasFontBold;
+  font-family: ClashGroteskBold;
   font-size: 2rem;
   text-transform: uppercase;
   text-align: center;
@@ -130,10 +164,12 @@ nav hr {
   }
 }
 .home-page .nyt-category-card:first-of-type > h2 {
+  font-family: ClashGroteskMedium;
   margin-top: 0.5rem;
 }
 
 .nyt-category-card > h2 {
+  font-family: ClashGroteskMedium;
   text-align: center;
   font-style: italic;
   font-size: 2rem;
@@ -164,6 +200,7 @@ nav hr {
 }
 
 .nyt-book-card a {
+  font-family: ClashGroteskRegular;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -240,10 +277,16 @@ nav hr {
 .search-page .search-area {
   margin-top: 5rem;
   margin-bottom: 2rem;
+  width: min(90%, 90rem);
+  margin-inline: auto;
+  word-wrap: break-word;
 }
 .search-page .search-results {
   margin-top: 2rem;
   margin-bottom: 5rem;
+  width: min(90%, 90rem);
+  margin-inline: auto;
+  word-wrap: break-word;
 }
 
 #search-form > label {
@@ -291,7 +334,7 @@ nav hr {
   outline: none;
   border-radius: 0px;
   border: 2px solid #f4e9e9;
-  transition: background-color 0.25s, color 0.25s;
+  transition: background-color 0.2s, color 0.2s;
 }
 @media (max-width: 48rem) {
   #search-form > div button {
