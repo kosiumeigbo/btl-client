@@ -2,7 +2,7 @@
 
 .home-page {
   > h1 {
-    font-family: AdidasFontBold;
+    font-family: ClashGroteskBold;
     font-size: 2rem;
     text-transform: uppercase;
     text-align: center;
@@ -14,6 +14,7 @@
 
   .nyt-category-card:first-of-type {
     > h2 {
+      font-family: ClashGroteskMedium;
       margin-top: 0.5rem;
     }
   }
@@ -21,6 +22,7 @@
 
 .nyt-category-card {
   > h2 {
+    font-family: ClashGroteskMedium;
     text-align: center;
     font-style: italic;
     font-size: 2rem;
@@ -51,6 +53,7 @@
 
 .nyt-book-card {
   a {
+    font-family: ClashGroteskRegular;
     display: flex;
     flex-direction: column;
     align-items: center;
