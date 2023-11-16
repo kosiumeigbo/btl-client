@@ -76,7 +76,8 @@ nav {
   @include base.respond-m() {
     display: block;
     position: absolute;
-    right: 20px;
+    right: 5px;
+    top: -5px;
   }
 
   &:hover {
