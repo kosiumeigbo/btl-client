@@ -20,7 +20,7 @@
 
 #search-form {
   > label {
-    font-size: 3rem;
+    font-size: 2rem;
 
     @include base.respond-m {
       font-size: 2rem;
@@ -39,6 +39,7 @@
 
     input {
       width: 50%;
+      font-family: ClashGroteskRegular, sans-serif, Arial, Helvetica;
       font-size: 1.5rem;
       outline: none;
       padding: 0.3rem 0.1rem;
