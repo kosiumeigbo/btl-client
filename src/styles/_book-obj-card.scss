@@ -1,0 +1,89 @@
+@use "base";
+@use "typography";
+
+.book-obj-card {
+  position: relative;
+  border: 1px solid base.$root-border-color;
+  border-radius: 1rem;
+  padding: 1rem 5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 2rem;
+  transition: border-color 0.2s;
+
+  &__img {
+    display: block;
+    height: 20rem;
+    border: 1px solid base.$root-border-color;
+
+    img {
+      height: 100%;
+    }
+  }
+
+  &__info {
+    height: 100%;
+
+    > h2 {
+      font-size: 2.5rem;
+      margin-bottom: 0.1rem;
+    }
+
+    > p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    > div {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1rem;
+
+      button {
+        padding: 0.5rem;
+        font-size: 1rem;
+        background-color: white;
+        border: 1px solid base.$root-border-color;
+        border-radius: 1rem;
+        transition:
+          background-color 0.2s,
+          color 0.2s;
+
+        &:hover {
+          cursor: pointer;
+          background-color: base.$root-hover-background;
+          color: white;
+        }
+      }
+    }
+  }
+
+  > a {
+    position: absolute;
+    display: block;
+    right: 20px;
+    bottom: 10px;
+    padding: 0.3rem;
+    border-radius: 5rem;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+
+    &:hover {
+      cursor: pointer;
+      background-color: base.$root-hover-background;
+      color: white;
+    }
+  }
+
+  &:hover {
+    border-color: base.$root-hover-background;
+  }
+
+  @include base.respond-m {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
