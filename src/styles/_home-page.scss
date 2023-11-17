@@ -3,7 +3,8 @@
 .home-page {
   > h1 {
     font-family: ClashGroteskBold;
-    font-size: 2rem;
+    font-size: 3rem;
+    margin-bottom: 5rem;
     text-transform: uppercase;
     text-align: center;
 
@@ -24,7 +25,6 @@
   > h2 {
     font-family: ClashGroteskMedium;
     text-align: center;
-    font-style: italic;
     font-size: 2rem;
     margin-top: 3rem;
 
@@ -59,8 +59,9 @@
     align-items: center;
     justify-content: flex-start;
     text-decoration: none;
-    border: 1px solid base.$nav-text-color;
+    border: 1px solid base.$root-border-color;
     padding: 0.5rem 0rem;
+    padding-top: 0;
     transition: border 0.3s;
 
     @include base.respond-s {
@@ -68,11 +69,12 @@
     }
 
     &:hover {
-      border-color: black;
+      border-color: base.$root-hover-background;
     }
 
     > div {
       height: 20rem;
+      width: 100%;
       margin-bottom: 1rem;
       display: flex;
       justify-content: center;
@@ -102,26 +104,31 @@
       }
 
       img {
-        height: 100%;
+        width: 100%;
+        height: auto;
       }
     }
-  }
 
-  p {
-    text-align: center;
-    color: black;
-    word-break: break-word;
+    > p {
+      text-align: center;
+      color: black;
+      word-break: break-word;
 
-    @include base.respond-m() {
-      font-size: 0.7rem;
+      @include base.respond-m() {
+        font-size: 0.7rem;
+      }
+
+      @include base.respond-s() {
+        font-size: 0.6rem;
+      }
     }
 
-    @include base.respond-s() {
-      font-size: 0.6rem;
+    > p:first-of-type {
+      font-family: ClashGroteskSemiBold;
     }
 
-    span {
-      font-style: italic;
+    > p:nth-of-type(2) {
+      font-family: ClashGroteskLight;
     }
   }
 }
