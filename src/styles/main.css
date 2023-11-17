@@ -35,6 +35,7 @@
   padding: 0;
   box-sizing: border-box;
   letter-spacing: 0.05rem;
+  word-break: break-word;
 }
 
 body {
@@ -53,6 +54,31 @@ main {
   #root {
     margin-left: 0rem;
   }
+}
+
+h1 {
+  font-family: ClashGroteskBold, sans-serif, Arial, Helvetica;
+}
+
+h2 {
+  font-family: ClashGroteskSemiBold, sans-serif, Arial, Helvetica;
+}
+
+h3 {
+  font-family: ClashGroteskMedium, sans-serif, Arial, Helvetica;
+}
+
+h4,
+h5,
+h6,
+p {
+  font-family: ClashGroteskRegular, sans-serif, Arial, Helvetica;
+}
+
+a {
+  font-family: ClashGroteskRegular, sans-serif, Arial, Helvetica;
+  text-decoration: none;
+  color: black;
 }
 
 .nav-bold {
@@ -123,7 +149,8 @@ nav hr {
   .close-btn {
     display: block;
     position: absolute;
-    right: 20px;
+    right: 5px;
+    top: -5px;
   }
 }
 .close-btn:hover {
@@ -290,7 +317,7 @@ nav hr {
 }
 
 #search-form > label {
-  font-size: 3rem;
+  font-size: 2rem;
 }
 @media (max-width: 48rem) {
   #search-form > label {
@@ -310,6 +337,7 @@ nav hr {
 }
 #search-form > div input {
   width: 50%;
+  font-family: ClashGroteskRegular, sans-serif, Arial, Helvetica;
   font-size: 1.5rem;
   outline: none;
   padding: 0.3rem 0.1rem;
@@ -346,6 +374,79 @@ nav hr {
   background-color: rgb(74, 45, 71);
   cursor: pointer;
   color: #f4e9e9;
+}
+
+.book-obj-card {
+  position: relative;
+  border: 1px solid rgb(201, 197, 197);
+  border-radius: 1rem;
+  padding: 1rem 5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 2rem;
+  transition: border-color 0.2s;
+}
+.book-obj-card__img {
+  display: block;
+  height: 20rem;
+  border: 1px solid rgb(201, 197, 197);
+}
+.book-obj-card__img img {
+  height: 100%;
+}
+.book-obj-card__info {
+  height: 100%;
+}
+.book-obj-card__info > h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.1rem;
+}
+.book-obj-card__info > p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+.book-obj-card__info > div {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+}
+.book-obj-card__info > div button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: white;
+  border: 1px solid rgb(201, 197, 197);
+  border-radius: 1rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+.book-obj-card__info > div button:hover {
+  cursor: pointer;
+  background-color: rgb(155, 94, 149);
+  color: white;
+}
+.book-obj-card > a {
+  position: absolute;
+  display: block;
+  right: 20px;
+  bottom: 10px;
+  padding: 0.3rem;
+  border-radius: 5rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+.book-obj-card > a:hover {
+  cursor: pointer;
+  background-color: rgb(155, 94, 149);
+  color: white;
+}
+.book-obj-card:hover {
+  border-color: rgb(155, 94, 149);
+}
+@media (max-width: 48rem) {
+  .book-obj-card {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
