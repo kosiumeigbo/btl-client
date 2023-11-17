@@ -28,7 +28,7 @@ export default class NytBookCard extends HTMLElement {
       <a href="/book?isbn=${this._data.isbn}">
         <div><img src="${this._data.imageSource}" alt="${this._data.title} by ${this._data.author} cover photo" /></div>
         <p>${this._data.title}</p>
-        <p>by <span>${this._data.author}</span></p>
+        <p><span>${this._data.author}</span></p>
       </a>
       `;
   }
