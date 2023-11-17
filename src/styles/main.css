@@ -181,7 +181,8 @@ nav hr {
 
 .home-page > h1 {
   font-family: ClashGroteskBold;
-  font-size: 2rem;
+  font-size: 3rem;
+  margin-bottom: 5rem;
   text-transform: uppercase;
   text-align: center;
 }
@@ -198,7 +199,6 @@ nav hr {
 .nyt-category-card > h2 {
   font-family: ClashGroteskMedium;
   text-align: center;
-  font-style: italic;
   font-size: 2rem;
   margin-top: 3rem;
 }
@@ -233,8 +233,9 @@ nav hr {
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
-  border: 1px solid #f4e9e9;
+  border: 1px solid rgb(201, 197, 197);
   padding: 0.5rem 0rem;
+  padding-top: 0;
   transition: border 0.3s;
 }
 @media (max-width: 26.25rem) {
@@ -243,10 +244,11 @@ nav hr {
   }
 }
 .nyt-book-card a:hover {
-  border-color: black;
+  border-color: rgb(155, 94, 149);
 }
 .nyt-book-card a > div {
   height: 20rem;
+  width: 100%;
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
@@ -280,25 +282,29 @@ nav hr {
   }
 }
 .nyt-book-card a > div img {
-  height: 100%;
+  width: 100%;
+  height: auto;
 }
-.nyt-book-card p {
+.nyt-book-card a > p {
   text-align: center;
   color: black;
   word-break: break-word;
 }
 @media (max-width: 48rem) {
-  .nyt-book-card p {
+  .nyt-book-card a > p {
     font-size: 0.7rem;
   }
 }
 @media (max-width: 26.25rem) {
-  .nyt-book-card p {
+  .nyt-book-card a > p {
     font-size: 0.6rem;
   }
 }
-.nyt-book-card p span {
-  font-style: italic;
+.nyt-book-card a > p:first-of-type {
+  font-family: ClashGroteskSemiBold;
+}
+.nyt-book-card a > p:nth-of-type(2) {
+  font-family: ClashGroteskLight;
 }
 
 .search-page .search-area {
