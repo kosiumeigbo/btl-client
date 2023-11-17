@@ -1,0 +1,26 @@
+@use "base";
+
+h1 {
+  font-family: ClashGroteskBold, sans-serif, Arial, Helvetica;
+}
+
+h2 {
+  font-family: ClashGroteskSemiBold, sans-serif, Arial, Helvetica;
+}
+
+h3 {
+  font-family: ClashGroteskMedium, sans-serif, Arial, Helvetica;
+}
+
+h4,
+h5,
+h6,
+p {
+  font-family: ClashGroteskRegular, sans-serif, Arial, Helvetica;
+}
+
+a {
+  font-family: ClashGroteskRegular, sans-serif, Arial, Helvetica;
+  text-decoration: none;
+  color: black;
+}
