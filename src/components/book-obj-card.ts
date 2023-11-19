@@ -110,8 +110,8 @@ export default class BookObjCard extends HTMLElement {
       </a>
     </div>
     <div class="book-obj-card__info">
-      <h2>${this._data.title}</h2>
-      <p>${this._data.author}</p>
+      <h2>${this._data.title ?? "N/A"}</h2>
+      <p>${this._data.author ?? "N/A"}</p>
       <div>
         ${this.getLibraryButtonsMarkUp()}
       </div>
