@@ -99,29 +99,28 @@ keepUpdatingStateNyTimesBestSeller();
 // Function that accepts isbn as string, goes through Open Library to get the book
 // and updates state's search object, else returns an Error.
 // Will run when SearchPage is first loaded and also when the user presses the search button
-const updateStateSearchResult = async function (isbn: string = state.search.query): Promise<undefined | Error> {
+const updateStateSearchResult = async function (isbn: string): Promise<undefined | Error> {
   try {
-    if (state.search.query === "") {
-      state.search.result = null;
-      return;
-    }
     state.search.query = isbn;
 
-    const bookInLibrary = state.libraryBooks.find((book) => book.isbn === Number(isbn));
-    const bookNotInLibrary = state.nonLibraryBooks.find((book) => book.isbn === Number(isbn));
+    const openLibrarySearchResult = await getBookObjFromOpenLibrary(isbn);
+    if (openLibrarySearchResult instanceof Error) throw openLibrarySearchResult;
+
+    if (typeof openLibrarySearchResult === "string") {
+      state.search.result = openLibrarySearchResult;
+      return;
+    }
+
+    const bookInLibrary = state.libraryBooks.find((book) => book.isbn === openLibrarySearchResult.isbn);
+    const bookNotInLibrary = state.nonLibraryBooks.find((book) => book.isbn === openLibrarySearchResult.isbn);
 
     if (bookInLibrary !== undefined) {
       state.search.result = bookInLibrary;
     } else if (bookNotInLibrary !== undefined) {
       state.search.result = bookNotInLibrary;
     } else {
-      const openLibrarySearchResult = await getBookObjFromOpenLibrary(isbn);
-      if (openLibrarySearchResult instanceof Error) throw openLibrarySearchResult;
       state.search.result = openLibrarySearchResult;
-
-      if (typeof openLibrarySearchResult !== "string") {
-        state.nonLibraryBooks.push(openLibrarySearchResult);
-      }
+      state.nonLibraryBooks.push(openLibrarySearchResult);
     }
   } catch (e) {
     return e as Error;
