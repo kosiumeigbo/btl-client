@@ -133,21 +133,23 @@ const updateStateSearchResult = async function (isbn: string = state.search.quer
 // Will run when BookPage is first loaded. The isbn param is taken from the isbn query parameter on the URL
 const updateStateViewedBook = async function (isbn: string): Promise<undefined | Error> {
   try {
-    const bookInLibrary = state.libraryBooks.find((book) => book.isbn === Number(isbn));
-    const bookNotInLibrary = state.nonLibraryBooks.find((book) => book.isbn === Number(isbn));
+    const openLibrarySearchResult = await getBookObjFromOpenLibrary(isbn);
+    if (openLibrarySearchResult instanceof Error) throw openLibrarySearchResult;
+
+    if (typeof openLibrarySearchResult === "string") {
+      throw new Error();
+    }
+
+    const bookInLibrary = state.libraryBooks.find((book) => book.isbn === openLibrarySearchResult.isbn);
+    const bookNotInLibrary = state.nonLibraryBooks.find((book) => book.isbn === openLibrarySearchResult.isbn);
 
     if (bookInLibrary !== undefined) {
       state.viewedBook = bookInLibrary;
     } else if (bookNotInLibrary !== undefined) {
       state.viewedBook = bookNotInLibrary;
     } else {
-      const openLibrarySearchResult = await getBookObjFromOpenLibrary(isbn);
-      if (openLibrarySearchResult instanceof Error) throw openLibrarySearchResult;
       state.viewedBook = openLibrarySearchResult;
-
-      if (typeof openLibrarySearchResult !== "string") {
-        state.nonLibraryBooks.push(openLibrarySearchResult);
-      }
+      state.nonLibraryBooks.push(openLibrarySearchResult);
     }
   } catch (e) {
     return e as Error;
