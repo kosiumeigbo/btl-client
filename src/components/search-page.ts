@@ -37,7 +37,6 @@ export default class SearchPage extends HTMLElement {
 
     this.addEventListener("click", (e) => {
       this.updateThisData(e);
-      console.log(state.nonLibraryBooks);
     });
   }
 
@@ -62,7 +61,6 @@ export default class SearchPage extends HTMLElement {
       if (update instanceof Error) throw update;
 
       this.data = state.search;
-      console.log(this.data);
       this.render();
 
       const bookObjCard = this.querySelector("book-obj-card");
@@ -70,7 +68,6 @@ export default class SearchPage extends HTMLElement {
         (bookObjCard as BookObjCard).data = this._data.result;
       }
     } catch (e) {
-      console.log(searchResultsArea);
       searchResultsArea.innerHTML = `<h2>Something went wrong. Please try again.</h2>`;
     }
   }

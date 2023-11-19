@@ -31,7 +31,6 @@ export default class BookObjCard extends HTMLElement {
       const btnLibrary = (libButton as HTMLElement).dataset.library;
 
       if (typeof isbn === "string" && typeof btnLibrary === "string") {
-        console.log(isbn, btnLibrary);
         const updatedCardState = addToLibraryBtnIsPressed(isbn as LibraryLocation, btnLibrary);
 
         if (!(updatedCardState instanceof Error)) {

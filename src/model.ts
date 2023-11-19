@@ -78,7 +78,6 @@ const updateStateNyTimesBestSeller = async function (): Promise<void> {
 
       return { listName: listArea, books: booksInArea };
     });
-    console.log(state.nyTimesBestSeller);
   } catch (e) {
     (e as Error).message = "Could not get data from server";
     state.nyTimesBestSeller = [];
@@ -162,7 +161,6 @@ const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj
     if (!res.ok || res.status !== 200) throw new Error();
 
     const dataOpenLibrary = await res.json();
-    console.log(dataOpenLibrary);
 
     if (Object.keys(dataOpenLibrary).length === 0) return "No result";
 
@@ -210,7 +208,6 @@ const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj
       link: bkLink,
       location: "not-in-library"
     };
-    console.log(objToReturn);
 
     return objToReturn;
   } catch (e) {
