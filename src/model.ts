@@ -71,7 +71,7 @@ const updateStateNyTimesBestSeller = async function (): Promise<void> {
         return {
           author: book.author,
           imageSource: book.book_image,
-          isbn: Number(book.primary_isbn13),
+          isbn: book.primary_isbn13,
           title: book.title
         };
       });
