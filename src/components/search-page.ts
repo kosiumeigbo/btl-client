@@ -3,7 +3,7 @@ import type { BookObj } from "../types";
 import type BookObjCard from "./book-obj-card";
 import "./book-obj-card";
 
-export class SearchPage extends HTMLElement {
+export default class SearchPage extends HTMLElement {
   _data!: {
     query: string;
     result: BookObj | "No result" | null;
@@ -28,6 +28,92 @@ export class SearchPage extends HTMLElement {
 
   connectedCallback(): void {
     this.data = state.search;
+    this.render();
+
+    const bookObjCard = this.querySelector("book-obj-card");
+    if (bookObjCard !== null && this._data.result !== null && this._data.result !== "No result") {
+      (bookObjCard as BookObjCard).data = this._data.result;
+    }
+
+    this.addEventListener("click", (e) => {
+      this.updateThisData(e);
+      console.log(state.nonLibraryBooks);
+    });
+  }
+
+  disconnectedCallback(): void {
+    resetStateSearch();
+  }
+
+  async updateThisData(e: Event): Promise<void> {
+    const searchBookButton = (e.target as HTMLElement).closest("#book-search-btn");
+    const searchQuery = this.querySelector("input")?.value;
+    const searchResultsArea = this.querySelector(".search-results");
+
+    if (
+      searchBookButton === null ||
+      searchQuery === undefined ||
+      searchResultsArea === null ||
+      searchQuery.length === 0
+    )
+      return;
+
+    try {
+      const update = await updateStateSearchResult(searchQuery);
+      if (update instanceof Error) throw update;
+
+      this.data = state.search;
+      console.log(this.data);
+      this.render();
+
+      const bookObjCard = this.querySelector("book-obj-card");
+      if (bookObjCard !== null && this._data.result !== null && this._data.result !== "No result") {
+        (bookObjCard as BookObjCard).data = this._data.result;
+      }
+    } catch (e) {
+      console.log(searchResultsArea);
+      searchResultsArea.innerHTML = `<h2>Something went wrong. Please try again.</h2>`;
+    }
+  }
+
+  renderSearchResultsArea(): string {
+    if (this._data.result === null) {
+      return "<h2>Please enter an ISBN to search for a book 🙂.</h2>";
+    }
+
+    if (this._data.result === "No result") {
+      return `<h2>No result found for ${this._data.query}</h2>`;
+    }
+
+    return `
+      <book-obj-card></book-obj-card>
+    `;
+  }
+
+  render(): void {
+    this.innerHTML = this.getMarkUp();
+  }
+
+  getMarkUp(): string {
+    return `
+  <div class="search-page">
+    <div class="search-area">
+      <div id="search-form">
+        <label><h2>Search by book ISBN:</h2></label>
+        <div>
+          <input type="text" id="book-search" autocomplete="off" value="${this._data.query}" />
+          <button id="book-search-btn"><p>FIND BOOK</p></button>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="search-results">
+      ${this.renderSearchResultsArea()}
+    </div>
+  </div>    
+    `;
   }
 }
 
