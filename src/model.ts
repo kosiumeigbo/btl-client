@@ -88,7 +88,6 @@ const updateStateNyTimesBestSeller = async function (): Promise<void> {
 // To navigate the NYTimes API limit, this function runs periodically and updates state's nyTimesBestSeller array.
 // The only downside is that if it returns an empty array, it has to wait a long time to get new data.
 // The function also runs immediately so that there is always something happening to the state's nyTimesBestSeller array
-
 const keepUpdatingStateNyTimesBestSeller = async function (): Promise<void> {
   await updateStateNyTimesBestSeller();
 
