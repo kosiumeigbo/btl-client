@@ -13,6 +13,12 @@ const state: State = {
   locations: ["booksDone", "booksInProgress", "booksToRead"]
 };
 
+// Function resets the state.search properties to their default values
+const resetStateSearch = function (): void {
+  state.search.query = "";
+  state.search.result = null;
+};
+
 // Function takes in the isbn from the data-isbn property and the btnLibrary param is from the data-library property
 // on the pressed button. It returns either the 
 const addToLibraryBtnIsPressed = function (btnDataset: LibraryLocation, isbn: string): Error | BookObj {
