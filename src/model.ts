@@ -181,7 +181,7 @@ const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj
 
     // To get isbn
     const bkIsbnArr = mainObject.identifiers.isbn_13 ?? mainObject.identifiers.isbn_10;
-    const bkIsbn = Number(bkIsbnArr[0]);
+    const bkIsbn = bkIsbnArr[0];
 
     // To get pages
     const bkPagesCheck = mainObject.number_of_pages ?? mainObject.pagination ?? null;
