@@ -225,5 +225,6 @@ export {
   addToLibraryBtnIsPressed,
   updateStateNyTimesBestSeller,
   updateStateSearchResult,
-  updateStateViewedBook
+  updateStateViewedBook,
+  resetStateSearch
 };
