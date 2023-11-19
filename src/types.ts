@@ -115,7 +115,7 @@ export interface Cover {
 export interface BookObj {
   author: string | null;
   imageSource: string | null;
-  isbn: number;
+  isbn: string;
   numberOfPages: null | string;
   yearPublished: null | string;
   publisher: null | string;
@@ -129,7 +129,7 @@ export type LibraryLocation = "booksDone" | "booksInProgress" | "booksToRead";
 export interface BookObjNYT {
   author: string;
   imageSource: string;
-  isbn: number;
+  isbn: string;
   title: string;
 }
 
