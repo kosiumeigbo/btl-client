@@ -1,5 +1,7 @@
-import { state } from "../model";
+import { state, resetStateSearch, updateStateSearchResult } from "../model";
 import type { BookObj } from "../types";
+import type BookObjCard from "./book-obj-card";
+import "./book-obj-card";
 
 export class SearchPage extends HTMLElement {
   _data!: {
