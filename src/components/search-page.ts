@@ -47,16 +47,15 @@ export default class SearchPage extends HTMLElement {
 
   async updateThisData(e: Event): Promise<void> {
     const searchBookButton = (e.target as HTMLElement).closest("#book-search-btn");
-    const searchQuery = this.querySelector("input")?.value;
+    const searchQuery = this.querySelector("input")?.value?.trim();
     const searchResultsArea = this.querySelector(".search-results");
 
-    if (
-      searchBookButton === null ||
-      searchQuery === undefined ||
-      searchResultsArea === null ||
-      searchQuery.length === 0
-    )
+    if (searchBookButton === null || searchQuery === undefined || searchResultsArea === null) return;
+
+    if (searchQuery.length === 0) {
+      searchResultsArea.innerHTML = `<h2>Please enter a value</h2>`;
       return;
+    }
 
     try {
       const update = await updateStateSearchResult(searchQuery);
