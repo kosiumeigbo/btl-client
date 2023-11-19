@@ -20,48 +20,33 @@ const resetStateSearch = function (): void {
 };
 
 // Function takes in the isbn from the data-isbn property and the btnLibrary param is from the data-library property
-// on the pressed button. It returns either the 
+// on the pressed button. It returns either the
 const addToLibraryBtnIsPressed = function (btnDataset: LibraryLocation, isbn: string): Error | BookObj {
-  const bookLibraryIndex = state.libraryBooks.findIndex((bk) => bk.isbn === Number(isbn));
-  const bookLibrary = state.libraryBooks.find((bk) => bk.isbn === Number(isbn));
-
-  /*
-    if (bookLibraryIndex === -1) {
-      const searchedBk = await getBookObjFromOpenLibrary(isbn);
-      if (searchedBk instanceof Error) return;
-      if (searchedBk === "No result") return;
-      searchedBk.location = btnDataset;
-      state.library.push(searchedBk);
-    } else {
-      state.library.forEach((bk) => {
-        if (bk.isbn === Number(isbn)) {
-          bk.location = btnDataset;
-        }
-      });
-    }
-  */
+  const bookLibraryIndex = state.libraryBooks.findIndex((bk) => bk.isbn === isbn);
+  const bookLibrary = state.libraryBooks.find((bk) => bk.isbn === isbn);
 
   if (bookLibraryIndex !== -1 && bookLibrary !== undefined) {
     if (bookLibrary.location === btnDataset) {
-      bookLibrary.location = "not-in-library";
-
       const [updatedBk] = state.libraryBooks.splice(bookLibraryIndex, 1);
+
+      updatedBk.location = "not-in-library";
       state.nonLibraryBooks.push(updatedBk);
 
       return updatedBk;
     }
 
     bookLibrary.location = btnDataset;
+    state.libraryBooks.splice(bookLibraryIndex, 1, bookLibrary);
     return bookLibrary;
   }
 
-  const bookNonLibraryIndex = state.nonLibraryBooks.findIndex((bk) => bk.isbn === Number(isbn));
-  const bookNonLibrary = state.nonLibraryBooks.find((bk) => bk.isbn === Number(isbn));
+  const bookNonLibraryIndex = state.nonLibraryBooks.findIndex((bk) => bk.isbn === isbn);
+  const bookNonLibrary = state.nonLibraryBooks.find((bk) => bk.isbn === isbn);
 
   if (bookNonLibraryIndex !== -1 && bookNonLibrary !== undefined) {
-    bookNonLibrary.location = btnDataset;
-
     const [updatedBk] = state.nonLibraryBooks.splice(bookNonLibraryIndex, 1);
+    updatedBk.location = btnDataset;
+
     state.libraryBooks.push(updatedBk);
 
     return updatedBk;
