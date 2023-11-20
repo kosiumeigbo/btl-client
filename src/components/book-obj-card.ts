@@ -1,5 +1,6 @@
 import type { BookObj, LibraryLocation } from "../types";
 import { addToLibraryBtnIsPressed } from "../model";
+import bookImage from "url:../assets/images/generic-book.png";
 
 export default class BookObjCard extends HTMLElement {
   _data!: BookObj;
