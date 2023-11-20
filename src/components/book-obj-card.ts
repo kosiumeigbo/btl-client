@@ -106,7 +106,11 @@ export default class BookObjCard extends HTMLElement {
   <div class="book-obj-card" style="margin-bottom: 100px">
     <div class="book-obj-card__img">
       <a href="/book?isbn=${this._data.isbn}">
-        <img src="${this._data.imageSource}" alt="${this._data.title} by ${this._data.author}" />
+        <img src="${this._data.imageSource ?? bookImage}" alt="${
+          this._data.title !== null && this._data.author !== null
+            ? `${this._data.title} by ${this._data.author}`
+            : `Generic Book cover image`
+        }" />
       </a>
     </div>
     <div class="book-obj-card__info">
