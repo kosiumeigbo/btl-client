@@ -56,6 +56,11 @@ export default class SearchPage extends HTMLElement {
       return;
     }
 
+    if (Number.isNaN(Number(searchQuery))) {
+      searchResultsArea.innerHTML = `<h2>Please enter the full ISBN with only the numbers</h2>`;
+      return;
+    }
+
     try {
       const update = await updateStateSearchResult(searchQuery);
       if (update instanceof Error) throw update;
@@ -96,6 +101,7 @@ export default class SearchPage extends HTMLElement {
     <div class="search-area">
       <div id="search-form">
         <label><h2>Search by book ISBN:</h2></label>
+        <h2>Please enter only the numbers</h2>
         <div>
           <input type="text" id="book-search" autocomplete="off" value="${this._data.query}" />
           <button id="book-search-btn"><p>FIND BOOK</p></button>
