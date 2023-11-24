@@ -223,6 +223,65 @@ const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj
       location: "not-in-library"
     };
 
+    console.log(objToReturn);
+
+    return objToReturn;
+  } catch (e) {
+    (e as Error).message = "Could not get data from server";
+    return e as Error;
+  }
+};
+
+const getBookObjFromGoogleBooks = async function (isbn: string): Promise<BookObj | "No result" | Error> {
+  try {
+    const res = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=${GOOGLE_BOOKS_API_KEY}`);
+
+    if (!res.ok || res.status !== 200) throw new Error();
+
+    const dataGoogleBooks = await res.json();
+
+    if (dataGoogleBooks.totalItems === 0) return "No result";
+
+    const [mainObject]: [Item] = dataGoogleBooks.items;
+
+    // To get author(s)
+    const bkAuthor = mainObject.volumeInfo.authors?.join(", ") ?? null;
+
+    // To get image source
+    const bkImageSource = mainObject.volumeInfo.imageLinks?.thumbnail ?? null;
+
+    // To get isbn
+    const bkIsbn = mainObject.volumeInfo.industryIdentifiers[0].identifier;
+
+    // To get pages
+    const bkPages = mainObject.volumeInfo.pageCount?.toString() ?? null;
+
+    // To get year published
+    const bkYearPublished = mainObject.volumeInfo.publishedDate ?? null;
+
+    // To get publisher
+    const bkPublisher = mainObject.volumeInfo.publisher ?? null;
+
+    // To get title
+    const bkTitle = mainObject.volumeInfo.title ?? null;
+
+    // To get link for book
+    const bkLink = mainObject.volumeInfo.previewLink ?? null;
+
+    const objToReturn: BookObj = {
+      author: bkAuthor,
+      imageSource: bkImageSource,
+      isbn: bkIsbn,
+      numberOfPages: bkPages,
+      yearPublished: bkYearPublished,
+      publisher: bkPublisher,
+      title: bkTitle,
+      link: bkLink,
+      location: "not-in-library"
+    };
+
+    console.log(objToReturn);
+
     return objToReturn;
   } catch (e) {
     (e as Error).message = "Could not get data from server";
@@ -233,6 +292,7 @@ const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj
 export {
   state,
   getBookObjFromOpenLibrary,
+  getBookObjFromGoogleBooks,
   addToLibraryBtnIsPressed,
   updateStateNyTimesBestSeller,
   updateStateSearchResult,
