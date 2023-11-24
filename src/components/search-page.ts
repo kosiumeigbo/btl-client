@@ -56,7 +56,7 @@ export default class SearchPage extends HTMLElement {
       return;
     }
 
-    if (Number.isNaN(Number(searchQuery))) {
+    if (isNaN(Number(searchQuery))) {
       searchResultsArea.innerHTML = `<h2>Please enter the full ISBN with only the numbers</h2>`;
       return;
     }
