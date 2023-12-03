@@ -246,8 +246,6 @@ const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj
       location: "not-in-library"
     };
 
-    console.log(objToReturn);
-
     return objToReturn;
   } catch (e) {
     (e as Error).message = "Could not get data from server";
