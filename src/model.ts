@@ -327,6 +327,7 @@ export {
   state,
   getBookObjFromOpenLibrary,
   getBookObjFromGoogleBooks,
+  getBookObj,
   addToLibraryBtnIsPressed,
   updateStateNyTimesBestSeller,
   updateStateSearchResult,
