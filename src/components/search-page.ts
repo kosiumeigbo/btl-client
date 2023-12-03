@@ -56,6 +56,11 @@ export default class SearchPage extends HTMLElement {
       return;
     }
 
+    if (isNaN(Number(searchQuery))) {
+      searchResultsArea.innerHTML = `<h2>Please enter a valid ISBN with only the numbers</h2>`;
+      return;
+    }
+
     try {
       const update = await updateStateSearchResult(searchQuery);
       if (update instanceof Error) throw update;
@@ -68,7 +73,7 @@ export default class SearchPage extends HTMLElement {
         (bookObjCard as BookObjCard).data = this._data.result;
       }
     } catch (e) {
-      searchResultsArea.innerHTML = `<h2>Something went wrong. Please try again.</h2>`;
+      searchResultsArea.innerHTML = `<h2>${(e as Error).message}</h2>`;
     }
   }
 
@@ -78,7 +83,7 @@ export default class SearchPage extends HTMLElement {
     }
 
     if (this._data.result === "No result") {
-      return `<h2>No result found for ${this._data.query}</h2>`;
+      return `<h2>Oops! No result found for ${this._data.query}</h2>`;
     }
 
     return `
@@ -96,6 +101,7 @@ export default class SearchPage extends HTMLElement {
     <div class="search-area">
       <div id="search-form">
         <label><h2>Search by book ISBN:</h2></label>
+        <h2>Please enter only the numbers</h2>
         <div>
           <input type="text" id="book-search" autocomplete="off" value="${this._data.query}" />
           <button id="book-search-btn"><p>FIND BOOK</p></button>

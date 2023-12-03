@@ -1,3 +1,7 @@
 import "./hamburgerControl";
 import "./components/search-page";
-import "./router";
+import { getBookObj } from "./model";
+
+getBookObj("9780349437019").catch((e: Error) => {
+  console.log(e);
+});
