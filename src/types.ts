@@ -211,7 +211,7 @@ export interface BookObj {
   imageSource: string | null;
   isbn: string;
   numberOfPages: null | string;
-  yearPublished: null | string;
+  datePublished: null | string;
   publisher: null | string;
   title: string | null;
   link: string | null;
