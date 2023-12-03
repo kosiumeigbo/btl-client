@@ -57,7 +57,7 @@ export default class SearchPage extends HTMLElement {
     }
 
     if (isNaN(Number(searchQuery))) {
-      searchResultsArea.innerHTML = `<h2>Please enter the full ISBN with only the numbers</h2>`;
+      searchResultsArea.innerHTML = `<h2>Please enter a valid ISBN with only the numbers</h2>`;
       return;
     }
 
@@ -73,7 +73,7 @@ export default class SearchPage extends HTMLElement {
         (bookObjCard as BookObjCard).data = this._data.result;
       }
     } catch (e) {
-      searchResultsArea.innerHTML = `<h2>Something went wrong. Please try again.</h2>`;
+      searchResultsArea.innerHTML = `<h2>${(e as Error).message}</h2>`;
     }
   }
 
@@ -83,7 +83,7 @@ export default class SearchPage extends HTMLElement {
     }
 
     if (this._data.result === "No result") {
-      return `<h2>No result found for ${this._data.query}</h2>`;
+      return `<h2>Oops! No result found for ${this._data.query}</h2>`;
     }
 
     return `
