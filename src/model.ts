@@ -115,24 +115,24 @@ const updateStateSearchResult = async function (isbn: string): Promise<undefined
   try {
     state.search.query = isbn;
 
-    const openLibrarySearchResult = await getBookObjFromOpenLibrary(isbn);
-    if (openLibrarySearchResult instanceof Error) throw openLibrarySearchResult;
+    const bookSearchResult = await getBookObj(isbn);
+    if (bookSearchResult instanceof Error) throw bookSearchResult;
 
-    if (typeof openLibrarySearchResult === "string") {
-      state.search.result = openLibrarySearchResult;
+    if (typeof bookSearchResult === "string") {
+      state.search.result = bookSearchResult;
       return;
     }
 
-    const bookInLibrary = state.libraryBooks.find((book) => book.isbn === openLibrarySearchResult.isbn);
-    const bookNotInLibrary = state.nonLibraryBooks.find((book) => book.isbn === openLibrarySearchResult.isbn);
+    const bookInLibrary = state.libraryBooks.find((book) => book.isbn === bookSearchResult.isbn);
+    const bookNotInLibrary = state.nonLibraryBooks.find((book) => book.isbn === bookSearchResult.isbn);
 
     if (bookInLibrary !== undefined) {
       state.search.result = bookInLibrary;
     } else if (bookNotInLibrary !== undefined) {
       state.search.result = bookNotInLibrary;
     } else {
-      state.search.result = openLibrarySearchResult;
-      state.nonLibraryBooks.push(openLibrarySearchResult);
+      state.search.result = bookSearchResult;
+      state.nonLibraryBooks.push(bookSearchResult);
     }
   } catch (e) {
     return e as Error;
@@ -144,23 +144,23 @@ const updateStateSearchResult = async function (isbn: string): Promise<undefined
 // Will run when BookPage is first loaded. The isbn param is taken from the isbn query parameter on the URL
 const updateStateViewedBook = async function (isbn: string): Promise<undefined | Error> {
   try {
-    const openLibrarySearchResult = await getBookObjFromOpenLibrary(isbn);
-    if (openLibrarySearchResult instanceof Error) throw openLibrarySearchResult;
+    const bookSearchResult = await getBookObj(isbn);
+    if (bookSearchResult instanceof Error) throw bookSearchResult;
 
-    if (typeof openLibrarySearchResult === "string") {
-      throw new Error();
+    if (typeof bookSearchResult === "string") {
+      throw new Error("No result found for the ISBN provided");
     }
 
-    const bookInLibrary = state.libraryBooks.find((book) => book.isbn === openLibrarySearchResult.isbn);
-    const bookNotInLibrary = state.nonLibraryBooks.find((book) => book.isbn === openLibrarySearchResult.isbn);
+    const bookInLibrary = state.libraryBooks.find((book) => book.isbn === bookSearchResult.isbn);
+    const bookNotInLibrary = state.nonLibraryBooks.find((book) => book.isbn === bookSearchResult.isbn);
 
     if (bookInLibrary !== undefined) {
       state.viewedBook = bookInLibrary;
     } else if (bookNotInLibrary !== undefined) {
       state.viewedBook = bookNotInLibrary;
     } else {
-      state.viewedBook = openLibrarySearchResult;
-      state.nonLibraryBooks.push(openLibrarySearchResult);
+      state.viewedBook = bookSearchResult;
+      state.nonLibraryBooks.push(bookSearchResult);
     }
   } catch (e) {
     return e as Error;
@@ -239,7 +239,7 @@ const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj
       imageSource: bkImageSource,
       isbn: bkIsbn,
       numberOfPages: bkPages,
-      yearPublished: bkYearPublished,
+      datePublished: bkYearPublished,
       publisher: bkPublisher,
       title: bkTitle,
       link: bkLink,
