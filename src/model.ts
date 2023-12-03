@@ -167,6 +167,29 @@ const updateStateViewedBook = async function (isbn: string): Promise<undefined |
   }
 };
 
+// Function to get the book object from either Open Library or Google Books API
+// Google Books API is the first choice, if it returns an error or "No result", then Open Library is used
+const getBookObj = async function (isbn: string): Promise<BookObj | "No result" | Error> {
+  try {
+    const googleBooksSearchResult = await getBookObjFromGoogleBooks(isbn);
+
+    if (googleBooksSearchResult instanceof Error || typeof googleBooksSearchResult === "string") {
+      const openLibrarySearchResult = await getBookObjFromOpenLibrary(isbn);
+      if (openLibrarySearchResult instanceof Error) throw openLibrarySearchResult;
+
+      if (typeof openLibrarySearchResult === "string") {
+        return openLibrarySearchResult;
+      }
+
+      return openLibrarySearchResult;
+    }
+
+    return googleBooksSearchResult;
+  } catch (e: any) {
+    return e as Error;
+  }
+};
+
 // Function that accepts isbn as string, goes through Open Library to get the book
 // and returns either a BookObj object or "No result", else returns an Error
 const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj | "No result" | Error> {
