@@ -232,38 +232,51 @@ const getBookObjFromOpenLibrary = async function (isbn: string): Promise<BookObj
   }
 };
 
+// Function that accepts isbn as string, goes through Google Books API to get the book
+// and returns either a BookObj object or "No result", else returns an Error
 const getBookObjFromGoogleBooks = async function (isbn: string): Promise<BookObj | "No result" | Error> {
   try {
     const res = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=${GOOGLE_BOOKS_API_KEY}`);
 
     if (!res.ok || res.status !== 200) throw new Error();
 
-    const dataGoogleBooks = await res.json();
+    const dataGoogleBooks = (await res.json()) as Root;
 
     if (dataGoogleBooks.totalItems === 0) return "No result";
 
-    const [mainObject]: [Item] = dataGoogleBooks.items;
+    const [mainObject]: Item[] = dataGoogleBooks.items;
+    const { volumeInfo } = mainObject;
 
     // To get author(s)
-    const bkAuthor = mainObject.volumeInfo.authors?.join(", ") ?? null;
+    // const bkAuthor = mainObject.volumeInfo.authors?.join(", ") ?? null;
+    const bkAuthor = volumeInfo.authors?.join(", ") ?? null;
 
     // To get image source
-    const bkImageSource = mainObject.volumeInfo.imageLinks?.thumbnail ?? null;
+    // const bkImageSource = mainObject.volumeInfo.imageLinks?.thumbnail ?? null;
+    const bkImageSource = volumeInfo.imageLinks?.thumbnail ?? volumeInfo.imageLinks?.smallThumbnail ?? null;
 
     // To get isbn
-    const bkIsbn = mainObject.volumeInfo.industryIdentifiers[0].identifier;
+    // const bkIsbn = mainObject.volumeInfo.industryIdentifiers[0].identifier;
+    const bkIsbn =
+      volumeInfo.industryIdentifiers?.find((obj) => obj.type === "ISBN_13")?.identifier ??
+      volumeInfo.industryIdentifiers?.find((obj) => obj.type === "ISBN_10")?.identifier ??
+      "N/A";
 
     // To get pages
-    const bkPages = mainObject.volumeInfo.pageCount?.toString() ?? null;
+    // const bkPages = mainObject.volumeInfo.pageCount?.toString() ?? null;
+    const bkPages = volumeInfo.pageCount === 0 ? null : volumeInfo.pageCount?.toString() ?? null;
 
     // To get year published
-    const bkYearPublished = mainObject.volumeInfo.publishedDate ?? null;
+    // const bkYearPublished = mainObject.volumeInfo.publishedDate ?? null;
+    const bkYearPublished = volumeInfo.publishedDate ?? null;
 
     // To get publisher
-    const bkPublisher = mainObject.volumeInfo.publisher ?? null;
+    // const bkPublisher = mainObject.volumeInfo.publisher ?? null;
+    const bkPublisher = volumeInfo.publisher ?? null;
 
     // To get title
-    const bkTitle = mainObject.volumeInfo.title ?? null;
+    // const bkTitle = mainObject.volumeInfo.title ?? null;
+    const bkTitle = volumeInfo.title ?? null;
 
     // To get link for book
     const bkLink = mainObject.volumeInfo.previewLink ?? null;
@@ -273,14 +286,12 @@ const getBookObjFromGoogleBooks = async function (isbn: string): Promise<BookObj
       imageSource: bkImageSource,
       isbn: bkIsbn,
       numberOfPages: bkPages,
-      yearPublished: bkYearPublished,
+      datePublished: bkYearPublished,
       publisher: bkPublisher,
       title: bkTitle,
       link: bkLink,
       location: "not-in-library"
     };
-
-    console.log(objToReturn);
 
     return objToReturn;
   } catch (e) {
