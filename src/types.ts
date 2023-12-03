@@ -215,10 +215,10 @@ export interface BookObj {
   publisher: null | string;
   title: string | null;
   link: string | null;
-  location: LibraryLocation | "not-in-library";
+  location: LibraryLocation;
 }
 
-export type LibraryLocation = "booksDone" | "booksInProgress" | "booksToRead";
+export type LibraryLocation = "booksDone" | "booksInProgress" | "booksToRead" | "not-in-library";
 
 export interface BookObjNYT {
   author: string;

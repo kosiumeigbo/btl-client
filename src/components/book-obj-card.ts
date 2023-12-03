@@ -14,25 +14,28 @@ export default class BookObjCard extends HTMLElement {
   }
 
   set data(data: BookObj) {
-    if (this._data !== data) {
-      this._data = data;
-      this.render();
-    }
+    this._data = data;
+    this.render();
   }
 
   connectedCallback(): void {
-    this.addEventListener("click", this.btnPressed.bind(this));
+    this.addEventListener("click", (e) => {
+      this.btnPressed(e);
+    });
   }
 
   btnPressed(e: Event): void {
     const libButton = (e.target as HTMLElement).closest("[data-library][data-isbn]");
+    console.log(libButton);
 
     if (libButton !== null) {
       const isbn = (libButton as HTMLElement).dataset.isbn;
       const btnLibrary = (libButton as HTMLElement).dataset.library;
+      console.log(isbn, btnLibrary);
 
       if (typeof isbn === "string" && typeof btnLibrary === "string") {
-        const updatedCardState = addToLibraryBtnIsPressed(isbn as LibraryLocation, btnLibrary);
+        const updatedCardState = addToLibraryBtnIsPressed(btnLibrary as LibraryLocation, isbn);
+        console.log(updatedCardState);
 
         if (!(updatedCardState instanceof Error)) {
           this.data = updatedCardState;
@@ -106,11 +109,7 @@ export default class BookObjCard extends HTMLElement {
   <div class="book-obj-card" style="margin-bottom: 100px">
     <div class="book-obj-card__img">
       <a href="/book?isbn=${this._data.isbn}">
-        <img src="${this._data.imageSource ?? bookImage}" alt="${
-          this._data.title !== null && this._data.author !== null
-            ? `${this._data.title} by ${this._data.author}`
-            : `Generic Book cover image`
-        }" />
+        <img src="${this._data.imageSource ?? bookImage}" alt="${this._data.title} by ${this._data.author}" />
       </a>
     </div>
     <div class="book-obj-card__info">
