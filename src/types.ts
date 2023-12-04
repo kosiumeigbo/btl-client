@@ -220,6 +220,12 @@ export interface BookObj {
 
 export type LibraryLocation = "booksDone" | "booksInProgress" | "booksToRead" | "not-in-library";
 
+export interface LibButtonPressedEventDetails {
+  totalBooksToRead: () => number;
+  totalBooksDone: () => number;
+  totalBooksInProgress: () => number;
+}
+
 export interface BookObjNYT {
   author: string;
   imageSource: string;
