@@ -47,7 +47,7 @@ export class HomePage extends HTMLElement {
 
   getMarkUp(): string {
     if (this._data.length === 0) {
-      return `Oops. You have reached the limit for calling the NYTimes API Endpoint.`;
+      return `<h2 style="margin-top: 10rem; display: flex; justify-content: center">Oops. You have reached the limit for calling the NYTimes API Endpoint.</h2>`;
     }
 
     return `
