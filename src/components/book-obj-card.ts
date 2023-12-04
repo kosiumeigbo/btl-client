@@ -41,6 +41,16 @@ export default class BookObjCard extends HTMLElement {
           this.data = updatedCardState;
         }
       }
+
+      const libBtnPressed = new CustomEvent<LibButtonPressedEventDetails>("lib-btn-pressed", {
+        bubbles: true,
+        detail: {
+          totalBooksDone: () => state.libraryBooks.filter((book) => book.location === "booksDone").length,
+          totalBooksInProgress: () => state.libraryBooks.filter((book) => book.location === "booksInProgress").length,
+          totalBooksToRead: () => state.libraryBooks.filter((book) => book.location === "booksToRead").length
+        }
+      });
+      this.dispatchEvent(libBtnPressed);
     }
   }
 
