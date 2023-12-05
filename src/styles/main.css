@@ -102,6 +102,7 @@ nav {
 @media (max-width: 48rem) {
   nav {
     left: -15rem;
+    z-index: 1;
   }
 }
 nav > div {
@@ -234,8 +235,7 @@ nav hr {
   justify-content: flex-start;
   text-decoration: none;
   border: 1px solid rgb(201, 197, 197);
-  padding: 0.5rem 0rem;
-  padding-top: 0;
+  padding: 0.5rem 0.5rem;
   transition: border 0.3s;
 }
 @media (max-width: 26.25rem) {
@@ -282,8 +282,8 @@ nav hr {
   }
 }
 .nyt-book-card a > div img {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
 }
 .nyt-book-card a > p {
   text-align: center;
@@ -325,9 +325,18 @@ nav hr {
 #search-form > label {
   font-size: 2rem;
 }
-@media (max-width: 48rem) {
+@media (max-width: 26.25rem) {
   #search-form > label {
-    font-size: 2rem;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+}
+@media (max-width: 26.25rem) {
+  #search-form > h2 {
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-family: ClashGroteskRegular, sans-serif, Arial, Helvetica;
   }
 }
 #search-form > div {
@@ -382,23 +391,76 @@ nav hr {
   color: #f4e9e9;
 }
 
+@media (max-width: 26.25rem) {
+  .search-results h2 {
+    font-size: 1rem;
+    font-family: ClashGroteskRegular, sans-serif, Arial, Helvetica;
+  }
+}
+
 .book-obj-card {
   position: relative;
   border: 1px solid rgb(201, 197, 197);
   border-radius: 1rem;
   padding: 1rem 5rem;
+  padding-bottom: 5rem;
+  margin-bottom: 3rem;
   display: grid;
   grid-template-columns: auto 1fr;
   column-gap: 2rem;
   transition: border-color 0.2s;
+}
+@media (max-width: 64rem) {
+  .book-obj-card {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 26.25rem) {
+  .book-obj-card {
+    padding: 1rem 1rem;
+    padding-bottom: 5rem;
+  }
 }
 .book-obj-card__img {
   display: block;
   height: 20rem;
   border: 1px solid rgb(201, 197, 197);
 }
-.book-obj-card__img img {
+@media (max-width: 64rem) {
+  .book-obj-card__img {
+    height: 15rem;
+    width: 100%;
+    border: none;
+    display: flex;
+    justify-content: center;
+  }
+}
+@media (max-width: 26.25rem) {
+  .book-obj-card__img {
+    height: 10rem;
+  }
+}
+@media (max-width: 64rem) {
+  .book-obj-card__img a {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 0%;
+  }
+}
+@media (max-width: 26.25rem) {
+  .book-obj-card__img a {
+    width: 100%;
+  }
+}
+.book-obj-card__img a img {
   height: 100%;
+  margin-inline: auto;
+}
+@media (max-width: 26.25rem) {
+  .book-obj-card__img a img {
+    object-fit: contain;
+  }
 }
 .book-obj-card__info {
   height: 100%;
@@ -407,15 +469,45 @@ nav hr {
   font-size: 2.5rem;
   margin-bottom: 0.1rem;
 }
+@media (max-width: 64rem) {
+  .book-obj-card__info > h2 {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 2rem;
+  }
+}
+@media (max-width: 26.25rem) {
+  .book-obj-card__info > h2 {
+    font-size: 1.5rem;
+  }
+}
 .book-obj-card__info > p {
   font-size: 1.5rem;
   margin-bottom: 2rem;
+}
+@media (max-width: 64rem) {
+  .book-obj-card__info > p {
+    text-align: center;
+    font-size: 1.3rem;
+  }
+}
+@media (max-width: 26.25rem) {
+  .book-obj-card__info > p {
+    font-size: 1rem;
+  }
 }
 .book-obj-card__info > div {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
+}
+@media (max-width: 26.25rem) {
+  .book-obj-card__info > div {
+    grid-template-columns: 1fr;
+    grid-gap: 0.5rem;
+    padding: 0 2rem;
+  }
 }
 .book-obj-card__info > div button {
   padding: 0.5rem;
@@ -429,6 +521,19 @@ nav hr {
   cursor: pointer;
   background-color: rgb(155, 94, 149);
   color: white;
+}
+.book-obj-card__info > div button > i:nth-of-type(2) {
+  display: none;
+}
+@media (max-width: 1196px) {
+  .book-obj-card__info > div button > i:nth-of-type(2) {
+    display: inline;
+  }
+}
+@media (max-width: 1196px) {
+  .book-obj-card__info > div button > span {
+    display: none;
+  }
 }
 .book-obj-card > a {
   position: absolute;
@@ -446,13 +551,6 @@ nav hr {
 }
 .book-obj-card:hover {
   border-color: rgb(155, 94, 149);
-}
-@media (max-width: 48rem) {
-  .book-obj-card {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
 }
 
 /*# sourceMappingURL=main.css.map */
