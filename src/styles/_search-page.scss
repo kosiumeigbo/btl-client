@@ -22,8 +22,18 @@
   > label {
     font-size: 2rem;
 
-    @include base.respond-m {
-      font-size: 2rem;
+    @include base.respond-s {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  > h2 {
+    @include base.respond-s {
+      font-size: 1rem;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-family: ClashGroteskRegular, sans-serif, Arial, Helvetica;
     }
   }
 
@@ -78,6 +88,15 @@
         cursor: pointer;
         color: base.$nav-text-color;
       }
+    }
+  }
+}
+
+.search-results {
+  h2 {
+    @include base.respond-s {
+      font-size: 1rem;
+      font-family: ClashGroteskRegular, sans-serif, Arial, Helvetica;
     }
   }
 }
