@@ -20,6 +20,7 @@ nav {
 
   @include base.respond-m {
     left: -15rem;
+    z-index: 1;
   }
 
   > div {
