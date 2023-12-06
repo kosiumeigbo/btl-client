@@ -1,4 +1,5 @@
-/* For JSON response for HomePage */
+/* JSON response from NYT Best Sellers API */
+
 export interface BestSellersData {
   list_id: number;
   list_name: string;
@@ -43,6 +44,10 @@ interface BuyLink {
   name: string;
   url: string;
 }
+
+/* ---------------------------------------- */
+
+/* JSON response from OpenLibrary API */
 
 export interface OpenLibraryData {
   url?: string;
@@ -111,6 +116,8 @@ export interface Cover {
 }
 
 /* ---------------------------------------- */
+
+/* JSON response from Google Books API */
 
 export interface Root {
   kind: string;
@@ -203,8 +210,25 @@ export interface SearchInfo {
   textSnippet: string;
 }
 
-/// /// /// /// /// /// /// /// /// ///
+/* ---------------------------------------- */
 
+/* Types & Interfaces for App */
+
+// Interface for the object for a NYT Best Sellers category card that will be on the home page
+export interface nyTimesHomePageListObj {
+  listName: string;
+  books: BookObjNYT[];
+}
+
+// Interface for the object for a NYT Best Sellers book that will be on the home page
+export interface BookObjNYT {
+  author: string;
+  imageSource: string;
+  isbn: string;
+  title: string;
+}
+
+// Interface for the basic fundamental book object to display on the UI
 export interface BookObj {
   author: string | null;
   imageSource: string | null;
@@ -219,24 +243,16 @@ export interface BookObj {
 
 export type LibraryLocation = "booksDone" | "booksInProgress" | "booksToRead" | "not-in-library";
 
+// Interface for custom event to update library numbers in nav section
 export interface LibButtonPressedEventDetails {
   totalBooksToRead: () => number;
   totalBooksDone: () => number;
   totalBooksInProgress: () => number;
 }
 
-export interface BookObjNYT {
-  author: string;
-  imageSource: string;
-  isbn: string;
-  title: string;
-}
-
-export interface nyTimesHomePageListObj {
-  listName: string;
-  books: BookObjNYT[];
-}
 /* ---------------------------------------- */
+
+/* Interface for State Object */
 
 export interface State {
   viewedBook: BookObj | "No result";
@@ -249,3 +265,5 @@ export interface State {
   nonLibraryBooks: BookObj[];
   locations: LibraryLocation[];
 }
+
+/* ---------------------------------------- */
