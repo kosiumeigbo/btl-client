@@ -449,18 +449,13 @@ nav hr {
     width: 0%;
   }
 }
-@media (max-width: 26.25rem) {
-  .book-obj-card__img a {
-    width: 100%;
-  }
-}
 .book-obj-card__img a img {
   height: 100%;
   margin-inline: auto;
 }
 @media (max-width: 26.25rem) {
   .book-obj-card__img a img {
-    object-fit: contain;
+    border: 1px solid rgb(201, 197, 197);
   }
 }
 .book-obj-card__info {

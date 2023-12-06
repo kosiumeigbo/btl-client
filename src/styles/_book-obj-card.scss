@@ -47,16 +47,12 @@
         width: 0%;
       }
 
-      @include base.respond-s {
-        width: 100%;
-      }
-
       img {
         height: 100%;
         margin-inline: auto;
 
         @include base.respond-s {
-          object-fit: contain;
+          border: 1px solid base.$root-border-color;
         }
       }
     }
