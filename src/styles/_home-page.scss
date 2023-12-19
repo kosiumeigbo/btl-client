@@ -54,6 +54,7 @@
 .nyt-book-card {
   a {
     font-family: ClashGroteskRegular;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -111,7 +112,6 @@
     > p {
       text-align: center;
       color: black;
-      word-break: break-word;
 
       @include base.respond-m() {
         font-size: 0.7rem;
