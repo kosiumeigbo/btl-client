@@ -620,6 +620,17 @@ nav hr {
   word-wrap: normal;
   word-break: normal;
   text-align: center;
+  color: black;
+}
+@media (max-width: 48rem) {
+  .sub-lib-book-card > a > h3 {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 26.25rem) {
+  .sub-lib-book-card > a > h3 {
+    font-size: 1rem;
+  }
 }
 .sub-lib-book-card > a > p {
   text-align: center;
@@ -636,25 +647,56 @@ nav hr {
   }
 }
 
+.sub-lib-card {
+  position: relative;
+}
 .sub-lib-card > h2 {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 .sub-lib-card > div {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   column-gap: 1rem;
   overflow-x: auto;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2), -2px 0px 5px rgba(0, 0, 0, 0.2);
+}
+.sub-lib-card > a {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: inline-block;
+  padding: 0.3rem;
+  border-radius: 5rem;
+  color: black;
+  transition: background-color 0.2s, color 0.2s;
+}
+@media (max-width: 48rem) {
+  .sub-lib-card > a {
+    font-size: 0.7rem;
+  }
+}
+@media (max-width: 26.25rem) {
+  .sub-lib-card > a {
+    font-size: 0.6rem;
+    position: static;
+    margin-top: 0.3rem;
+  }
+}
+.sub-lib-card > a:hover {
+  cursor: pointer;
+  background-color: rgb(155, 94, 149);
+  color: white;
 }
 
 .library-page {
-  margin-top: 3rem;
+  margin-top: 1rem;
   margin-bottom: 2rem;
   width: min(90%, 90rem);
   margin-inline: auto;
   word-wrap: break-word;
 }
 .library-page > h1 {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 /*# sourceMappingURL=main.css.map */
