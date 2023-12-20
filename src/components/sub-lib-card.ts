@@ -1,35 +1,78 @@
-import type { BookObj } from "../types";
+import type { SubLibCardObject } from "../types";
+import type SubLibBookCard from "./sub-lib-book-card";
+import "./sub-lib-book-card";
 
 export default class SubLibCard extends HTMLElement {
-  _data!: BookObj;
+  _data!: SubLibCardObject;
 
   constructor() {
     super();
   }
 
-  get data(): BookObj {
+  get data(): SubLibCardObject {
     return this._data;
   }
 
-  set data(data: BookObj) {
+  set data(data: SubLibCardObject) {
     if (this._data !== data) {
       this._data = data;
       this.render();
+
+      const subLibBookCards: NodeListOf<SubLibBookCard> = document.querySelectorAll("sub-lib-book-card");
+      if (subLibBookCards.length !== 0 || subLibBookCards !== null) {
+        subLibBookCards.forEach((subLibBookCard: SubLibBookCard, index: number) => {
+          subLibBookCard.data = this.data.books[index];
+        });
+      }
     }
   }
 
   render(): void {
-    this.innerHTML = this.getMarkUp();
+    this.outerHTML = this.getMarkUp();
+  }
+
+  checkBooks(): string {
+    if (this.data.books.length === 0) {
+      return `
+      <div class="sub-lib-card__empty">
+        <p>You have not added any book here. Add books to see them here! 🙂</p>
+      </div>
+      `;
+    } else if (this.data.books.length >= 5) {
+      let str: string = "";
+
+      for (let i = 0; i < 5; i++) {
+        str += `<sub-lib-book-card></sub-lib-book-card>`;
+      }
+
+      return `
+      <div class="sub-lib-card__books">
+        ${str}
+      </div>
+      `;
+    } else {
+      let str: string = "";
+
+      for (let i = 0; i < this.data.books.length; i++) {
+        str += `<sub-lib-book-card></sub-lib-book-card>`;
+      }
+
+      return `
+      <div class="sub-lib-card__books">
+        ${str}
+      </div>
+      `;
+    }
   }
 
   getMarkUp(): string {
     return `
-          <a href="/book?isbn=${this._data.isbn}">
-            <div><img src="${this._data.imageSource}" alt="${this._data.title} by ${this._data.author} cover photo" /></div>
-            <p>${this._data.title}</p>
-            <p><span>${this._data.author}</span></p>
-          </a>
-          `;
+  <div class="sub-lib-card">
+    <h2>${this.data.title}</h2>
+    ${this.checkBooks()}
+    ${this.data.books.length > 5 ? `<a href="/sub-library?q=${this.data.location}"><p>View more</p></a>` : ""}
+  </div>
+    `;
   }
 }
 

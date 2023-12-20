@@ -1,35 +1,50 @@
-import type { BookObj } from "../types";
+import type SubLibCard from "./sub-lib-card";
+import { state } from "../model";
+import "./sub-lib-card";
 
 export default class LibraryPage extends HTMLElement {
-  _data!: BookObj;
-
   constructor() {
     super();
   }
 
-  get data(): BookObj {
-    return this._data;
-  }
+  connectedCallback(): void {
+    this.render();
 
-  set data(data: BookObj) {
-    if (this._data !== data) {
-      this._data = data;
-      this.render();
+    const subLibCards: NodeListOf<SubLibCard> = document.querySelectorAll("sub-lib-card");
+    if (subLibCards.length !== 0 || subLibCards !== null) {
+      subLibCards[0].data = {
+        title: "Books In Progress",
+        location: "booksInProgress",
+        books: state.libraryBooks.filter((book) => book.location === "booksInProgress")
+      };
+
+      subLibCards[1].data = {
+        title: "Books To Read",
+        location: "booksToRead",
+        books: state.libraryBooks.filter((book) => book.location === "booksToRead")
+      };
+
+      subLibCards[2].data = {
+        title: "Books Done",
+        location: "booksDone",
+        books: state.libraryBooks.filter((book) => book.location === "booksDone")
+      };
     }
   }
 
-  connectedCallback(): void {
-    this.render();
-  }
-
   render(): void {
-    this.innerHTML = this.getMarkUp();
+    this.outerHTML = this.getMarkUp();
   }
 
   getMarkUp(): string {
     return `
-          <h2>Yooooo</h2>
-          `;
+  <div class="library-page">
+    <h1>Library</h1>
+    <sub-lib-card></sub-lib-card>
+    <sub-lib-card></sub-lib-card>
+    <sub-lib-card></sub-lib-card>
+  </div>
+    `;
   }
 }
 

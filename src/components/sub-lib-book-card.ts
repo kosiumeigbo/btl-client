@@ -1,4 +1,5 @@
 import type { BookObj } from "../types";
+import bookImage from "url:../assets/images/generic-book.png";
 
 export default class SubLibBookCard extends HTMLElement {
   _data!: BookObj;
@@ -19,17 +20,21 @@ export default class SubLibBookCard extends HTMLElement {
   }
 
   render(): void {
-    this.innerHTML = this.getMarkUp();
+    this.outerHTML = this.getMarkUp();
   }
 
   getMarkUp(): string {
     return `
-        <a href="/book?isbn=${this._data.isbn}">
-          <div><img src="${this._data.imageSource}" alt="${this._data.title} by ${this._data.author} cover photo" /></div>
-          <p>${this._data.title}</p>
-          <p><span>${this._data.author}</span></p>
-        </a>
-        `;
+  <div class="sub-lib-book-card">
+    <a href="/book?isbn=${this.data.isbn}">
+      <div><img src="${this.data.imageSource ?? bookImage}" alt="${this.data.title ?? "N/A"} by ${
+        this.data.author ?? "N/A"
+      }" /></div>
+      <h3>${this.data.title ?? "N/A"}</h3>
+      <p><span>${this.data.author ?? "N/A"}</span></p>
+    </a>
+  </div>
+  `;
   }
 }
 
