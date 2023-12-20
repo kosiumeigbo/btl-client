@@ -68,12 +68,20 @@
       word-wrap: normal;
       word-break: normal;
       text-align: center;
+      color: black;
+
+      @include base.respond-m() {
+        font-size: 1.2rem;
+      }
+
+      @include base.respond-s() {
+        font-size: 1rem;
+      }
     }
 
     > p {
       text-align: center;
       color: black;
-      //   word-break: break-word;
 
       @include base.respond-m() {
         font-size: 0.7rem;

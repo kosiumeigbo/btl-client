@@ -1,13 +1,13 @@
 @use "base";
 
 .library-page {
-  margin-top: 3rem;
+  margin-top: 1rem;
   margin-bottom: 2rem;
   width: min(90%, base.$screen-xl);
   margin-inline: auto;
   word-wrap: break-word;
 
   > h1 {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 }
