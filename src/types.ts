@@ -250,6 +250,12 @@ export interface LibButtonPressedEventDetails {
   totalBooksInProgress: () => number;
 }
 
+// Interface for data in the sub-lib-card component
+export interface SubLibCardObject {
+  title: string;
+  books: BookObj[];
+}
+
 /* ---------------------------------------- */
 
 /* Interface for State Object */
