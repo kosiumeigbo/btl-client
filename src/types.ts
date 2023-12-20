@@ -253,6 +253,7 @@ export interface LibButtonPressedEventDetails {
 // Interface for data in the sub-lib-card component
 export interface SubLibCardObject {
   title: string;
+  location: LibraryLocation;
   books: BookObj[];
 }
 
