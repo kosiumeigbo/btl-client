@@ -649,16 +649,40 @@ nav hr {
 
 .sub-lib-card {
   position: relative;
+  margin-bottom: 2rem;
 }
 .sub-lib-card > h2 {
   margin-bottom: 1rem;
 }
-.sub-lib-card > div {
+@media (max-width: 48rem) {
+  .sub-lib-card > h2 {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 26.25rem) {
+  .sub-lib-card > h2 {
+    font-size: 1.2rem;
+  }
+}
+.sub-lib-card__books {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   column-gap: 1rem;
   overflow-x: auto;
   box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2), -2px 0px 5px rgba(0, 0, 0, 0.2);
+}
+.sub-lib-card__empty {
+  color: black;
+}
+@media (max-width: 48rem) {
+  .sub-lib-card__empty {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 26.25rem) {
+  .sub-lib-card__empty {
+    font-size: 0.8rem;
+  }
 }
 .sub-lib-card > a {
   position: absolute;
@@ -697,6 +721,16 @@ nav hr {
 }
 .library-page > h1 {
   margin-bottom: 1rem;
+}
+@media (max-width: 48rem) {
+  .library-page > h1 {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 26.25rem) {
+  .library-page > h1 {
+    font-size: 1.6rem;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
