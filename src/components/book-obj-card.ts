@@ -123,7 +123,9 @@ export default class BookObjCard extends HTMLElement {
   <div class="book-obj-card" style="margin-bottom: 100px">
     <div class="book-obj-card__img">
       <a href="/book?isbn=${this._data.isbn}">
-        <img src="${this._data.imageSource ?? bookImage}" alt="${this._data.title} by ${this._data.author}" />
+        <img src="${this._data.imageSource ?? bookImage}" alt="${this._data.title ?? "N/A"} by ${
+          this._data.author ?? "N/A"
+        }" />
       </a>
     </div>
     <div class="book-obj-card__info">
