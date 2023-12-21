@@ -24,3 +24,17 @@ a {
   text-decoration: none;
   color: black;
 }
+
+a.link {
+  padding: 0.3rem;
+  border-radius: 5rem;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    background-color: base.$root-hover-background;
+    color: white;
+  }
+}
