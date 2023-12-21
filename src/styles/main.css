@@ -81,6 +81,17 @@ a {
   color: black;
 }
 
+a.link {
+  padding: 0.3rem;
+  border-radius: 5rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+a.link:hover {
+  cursor: pointer;
+  background-color: rgb(155, 94, 149);
+  color: white;
+}
+
 .nav-bold {
   font-family: ClashGroteskSemiBold, sans-serif, Arial, Helvetica;
 }
@@ -537,14 +548,6 @@ nav hr {
   display: block;
   right: 20px;
   bottom: 10px;
-  padding: 0.3rem;
-  border-radius: 5rem;
-  transition: background-color 0.2s, color 0.2s;
-}
-.book-obj-card > a:hover {
-  cursor: pointer;
-  background-color: rgb(155, 94, 149);
-  color: white;
 }
 .book-obj-card:hover {
   border-color: rgb(155, 94, 149);
@@ -689,10 +692,6 @@ nav hr {
   right: 0;
   top: 0;
   display: inline-block;
-  padding: 0.3rem;
-  border-radius: 5rem;
-  color: black;
-  transition: background-color 0.2s, color 0.2s;
 }
 @media (max-width: 48rem) {
   .sub-lib-card > a {
@@ -705,11 +704,6 @@ nav hr {
     position: static;
     margin-top: 0.3rem;
   }
-}
-.sub-lib-card > a:hover {
-  cursor: pointer;
-  background-color: rgb(155, 94, 149);
-  color: white;
 }
 
 .library-page {
