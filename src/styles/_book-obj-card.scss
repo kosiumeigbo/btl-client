@@ -140,17 +140,6 @@
     display: block;
     right: 20px;
     bottom: 10px;
-    padding: 0.3rem;
-    border-radius: 5rem;
-    transition:
-      background-color 0.2s,
-      color 0.2s;
-
-    &:hover {
-      cursor: pointer;
-      background-color: base.$root-hover-background;
-      color: white;
-    }
   }
 
   &:hover {

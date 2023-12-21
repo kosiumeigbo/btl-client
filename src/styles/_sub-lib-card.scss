@@ -43,12 +43,6 @@
     right: 0;
     top: 0;
     display: inline-block;
-    padding: 0.3rem;
-    border-radius: 5rem;
-    color: black;
-    transition:
-      background-color 0.2s,
-      color 0.2s;
 
     @include base.respond-m() {
       font-size: 0.7rem;
@@ -58,12 +52,6 @@
       font-size: 0.6rem;
       position: static;
       margin-top: 0.3rem;
-    }
-
-    &:hover {
-      cursor: pointer;
-      background-color: base.$root-hover-background;
-      color: white;
     }
   }
 }
