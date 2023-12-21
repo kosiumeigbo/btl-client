@@ -135,7 +135,7 @@ export default class BookObjCard extends HTMLElement {
         ${this.getLibraryButtonsMarkUp()}
       </div>
     </div>
-    <a href="/book?isbn=${this._data.isbn}">
+    <a class="link" href="/book?isbn=${this._data.isbn}">
       Go to book page &nbsp; <i class="fa-solid fa-arrow-right-from-bracket"></i>
     </a>
   </div>

@@ -70,7 +70,11 @@ export default class SubLibCard extends HTMLElement {
   <div class="sub-lib-card">
     <h2>${this.data.title}</h2>
     ${this.checkBooks()}
-    ${this.data.books.length > 5 ? `<a href="/sub-library?q=${this.data.location}"><p>View more</p></a>` : ""}
+    ${
+      this.data.books.length > 5
+        ? `<a class="link" href="/sub-library?q=${this.data.location}"><p>View more books</p></a>`
+        : ""
+    }
   </div>
     `;
   }
