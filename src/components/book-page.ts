@@ -1,14 +1,86 @@
-import type { BookObj } from "../types";
+import type { BookObj, LibraryLocation, LibButtonPressedEventDetails } from "../types";
+import { state, addToLibraryBtnIsPressed, updateStateViewedBook } from "../model";
+import bookImage from "url:../assets/images/generic-book.png";
 
 export default class BookPage extends HTMLElement {
-  data!: BookObj;
+  _data!: BookObj | "No result";
 
   constructor() {
     super();
   }
 
+  get data(): BookObj | "No result" {
+    return this._data;
+  }
+
+  set data(data: BookObj | "No result") {
+    this._data = data;
+  }
+
   connectedCallback(): void {
-    this.render();
+    console.log("Component mounted on the DOM");
+
+    this.getBookObjFromISBN();
+
+    this.addEventListener("click", (e) => {
+      this.btnPressed(e);
+    });
+  }
+
+  async getBookObjFromISBN(): Promise<undefined> {
+    this.outerHTML = `<div class="book-page"><h1>Loading...</h1></div>`;
+    // const wrap = document.querySelector(".book-page");
+
+    const searchParams = new URLSearchParams(window.location.search);
+
+    const isbn = searchParams.get("isbn");
+    console.log(isbn);
+
+    if (isbn === null) {
+      this.renderForNullISBN();
+
+      console.log("this is null in getBookObjFromISBN");
+      return;
+    }
+
+    const getBookObjFromISBN = await updateStateViewedBook(isbn);
+
+    if (getBookObjFromISBN instanceof Error) {
+      this.renderForErrorInISBNSearch(getBookObjFromISBN);
+      return;
+    }
+
+    this.data = state.viewedBook;
+  }
+
+  renderForNullISBN = (): void => {
+    console.log("this is null in renderForNullISBN");
+
+    this.outerHTML = `
+      <div class="book-page">
+        <div class="book-page__error>
+          <h1>Invalid Page URL</h1>
+          <p>Sorry, this is an invalid page URL.</p>
+        </div>
+      </div>
+    `;
+  };
+
+  renderForErrorInISBNSearch = (par: Error): void => {
+    this.outerHTML = `
+      <div class="book-page">
+        <div class="book-page__error>
+          <h1>Server Error</h1>
+          <p>${par.message}</p>
+        </div>
+      </div>
+    `;
+  };
+
+  render(): void {
+    this.outerHTML = this.getMarkUp();
+  }
+
   btnPressed(e: Event): void {
     const libButton = (e.target as HTMLElement).closest("[data-library][data-isbn]");
     console.log(libButton);
@@ -38,10 +110,120 @@ export default class BookPage extends HTMLElement {
       this.dispatchEvent(libBtnPressed);
     }
   }
+
+  getLibraryButtonsMarkUp(param: BookObj): string {
+    if (param.location === "booksInProgress") {
+      return `
+        <button data-isbn="${param.isbn}" data-library="booksInProgress" title="Add to or Remove from 'Books In Progress'">
+          <i class="fa-regular fa-circle-check" style="color: #2aff1c"></i> <i class="fa-solid fa-book-open"></i>
+        </button>
+        <button data-isbn="${param.isbn}" data-library="booksToRead" title="Add to or Remove from 'Books To Read'">
+          <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-list"></i>
+        </button>
+        <button data-isbn="${param.isbn}" data-library="booksDone" title="Add to or Remove from 'Books Done'">
+          <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-check"></i>
+        </button>
+        `;
+    }
+
+    if (param.location === "booksToRead") {
+      return `
+        <button data-isbn="${param.isbn}" data-library="booksInProgress" title="Add to or Remove from 'Books In Progress'">
+          <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-book-open"></i>
+        </button>
+        <button data-isbn="${param.isbn}" data-library="booksToRead" title="Add to or Remove from 'Books To Read'">
+          <i class="fa-regular fa-circle-check" style="color: #2aff1c"></i> <i class="fa-solid fa-list"></i>
+        </button>
+        <button data-isbn="${param.isbn}" data-library="booksDone" title="Add to or Remove from 'Books Done'">
+          <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-check"></i>
+        </button>
+      `;
+    }
+
+    if (param.location === "booksDone") {
+      return `
+        <button data-isbn="${param.isbn}" data-library="booksInProgress" title="Add to or Remove from 'Books In Progress'">
+          <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-book-open"></i>
+        </button>
+        <button data-isbn="${param.isbn}" data-library="booksToRead" title="Add to or Remove from 'Books To Read'">
+          <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-list"></i>
+        </button>
+        <button data-isbn="${param.isbn}" data-library="booksDone" title="Add to or Remove from 'Books Done'">
+          <i class="fa-regular fa-circle-check" style="color: #2aff1c"></i> <i class="fa-solid fa-check"></i>
+        </button>
+        `;
+    }
+
+    return `
+      <button data-isbn="${param.isbn}" data-library="booksInProgress" title="Add to or Remove from 'Books In Progress'">
+        <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-book-open"></i>
+      </button>
+      <button data-isbn="${param.isbn}" data-library="booksToRead" title="Add to or Remove from 'Books To Read'">
+        <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-list"></i>
+      </button>
+      <button data-isbn="${param.isbn}" data-library="booksDone" title="Add to or Remove from 'Books Done'">
+        <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-check"></i>
+      </button>
+        `;
   }
 
-  render(): string {
-    return ``;
+  getMarkUp(): string {
+    if (this.data === "No result") {
+      return `
+      <div class="book-page">
+        <div class="book-page__no-result>
+          <h1>No Result</h1>
+          <p>Sorry, there is no result for this ISBN.</p>
+        </div>
+      </div>
+    `;
+    } else {
+      return `
+    <div class="book-page">
+      <div class="book-page__title">
+        <h1>${this.data.title ?? "N/A"}</h1>
+        <p>by <span style="text-decoration: underline; font-style: italic">${this.data.author ?? "N/A"}</span></p>
+      </div>
+      <div class="book-page__panel">
+        <div class="image"><img src="${this.data.imageSource ?? bookImage}" alt="${this.data.title ?? "N/A"} by ${
+          this.data.author ?? "N/A"
+        }" /></div>
+        <div class="add-to-lib-buttons">
+          ${this.getLibraryButtonsMarkUp(this.data)}
+        </div>
+        ${
+          this.data.link !== null
+            ? `<a class="link" target="_blank" href="${this.data.link}">Go to main site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>`
+            : ""
+        }
+      </div>
+      <div class="book-page__info">
+        <div class="book-page__info__title">
+          <h1>${this.data.title ?? "N/A"}</h1>
+          <p>by <span style="text-decoration: underline; font-style: italic">${this.data.author ?? "N/A"}</span></p>
+        </div>
+        <div>
+          <h3>ISBN</h3>
+          <p>${this.data.isbn}</p>
+        </div>
+        <div class="book-page__info__grid">
+          <div>
+            <h3>No. of pages</h3>
+            <p>${this.data.numberOfPages ?? "N/A"}</p>
+          </div>
+          <div>
+            <h3>Date published</h3>
+            <p>${this.data.datePublished ?? "N/A"}</p>
+          </div>
+          <div>
+            <h3>Publisher</h3>
+            <p>${this.data.publisher ?? "N/A"}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+      `;
+    }
   }
 }
 
