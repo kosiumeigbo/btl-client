@@ -57,22 +57,18 @@ export default class BookPage extends HTMLElement {
     console.log("this is null in renderForNullISBN");
 
     this.innerHTML = `
-      <div class="book-page">
-        <div class="book-page__error">
-          <h1>Invalid Page URL</h1>
-          <p>Sorry, this is an invalid page URL.</p>
-        </div>
+      <div class="book-page-error">
+        <h1>Invalid Page URL</h1>
+        <p>Sorry, this is an invalid page URL.</p>
       </div>
     `;
   };
 
   renderForErrorInISBNSearch = (par: Error): void => {
     this.innerHTML = `
-      <div class="book-page">
-        <div class="book-page__error">
-          <h1>Server Error</h1>
-          <p>${par.message}</p>
-        </div>
+      <div class="book-page-error">
+        <h1>Server Error</h1>
+        <p>${par.message}</p>
       </div>
     `;
   };
@@ -170,11 +166,9 @@ export default class BookPage extends HTMLElement {
   getMarkUp(): string {
     if (this.data === "No result") {
       return `
-      <div class="book-page">
-        <div class="book-page__no-result">
-          <h1>No Result</h1>
-          <p>Sorry, there is no result for this ISBN.</p>
-        </div>
+      <div class="book-page-no-result">
+        <h1>No Result</h1>
+        <p>Sorry, there is no result for this ISBN.</p>
       </div>
     `;
     } else {
