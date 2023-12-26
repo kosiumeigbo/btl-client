@@ -28,37 +28,37 @@ export default class BookPage extends HTMLElement {
   }
 
   async getBookObjFromISBN(): Promise<undefined> {
-    this.outerHTML = `<div class="book-page"><h1>Loading...</h1></div>`;
-    // const wrap = document.querySelector(".book-page");
+    console.log("this is null in getBookObjFromISBN");
+    this.innerHTML = `<div class="book-page"><h1>Loading...</h1></div>`;
 
     const searchParams = new URLSearchParams(window.location.search);
-
     const isbn = searchParams.get("isbn");
-    console.log(isbn);
 
     if (isbn === null) {
       this.renderForNullISBN();
-
-      console.log("this is null in getBookObjFromISBN");
       return;
     }
 
-    const getBookObjFromISBN = await updateStateViewedBook(isbn);
+    try {
+      const getBookObjFromISBN = await updateStateViewedBook(isbn);
 
-    if (getBookObjFromISBN instanceof Error) {
-      this.renderForErrorInISBNSearch(getBookObjFromISBN);
-      return;
+      if (getBookObjFromISBN instanceof Error) {
+        throw getBookObjFromISBN;
+      }
+
+      this.data = state.viewedBook;
+      this.render();
+    } catch (e) {
+      this.renderForErrorInISBNSearch(e as Error);
     }
-
-    this.data = state.viewedBook;
   }
 
   renderForNullISBN = (): void => {
     console.log("this is null in renderForNullISBN");
 
-    this.outerHTML = `
+    this.innerHTML = `
       <div class="book-page">
-        <div class="book-page__error>
+        <div class="book-page__error">
           <h1>Invalid Page URL</h1>
           <p>Sorry, this is an invalid page URL.</p>
         </div>
@@ -67,9 +67,9 @@ export default class BookPage extends HTMLElement {
   };
 
   renderForErrorInISBNSearch = (par: Error): void => {
-    this.outerHTML = `
+    this.innerHTML = `
       <div class="book-page">
-        <div class="book-page__error>
+        <div class="book-page__error">
           <h1>Server Error</h1>
           <p>${par.message}</p>
         </div>
@@ -78,7 +78,7 @@ export default class BookPage extends HTMLElement {
   };
 
   render(): void {
-    this.outerHTML = this.getMarkUp();
+    this.innerHTML = this.getMarkUp();
   }
 
   btnPressed(e: Event): void {
@@ -171,7 +171,7 @@ export default class BookPage extends HTMLElement {
     if (this.data === "No result") {
       return `
       <div class="book-page">
-        <div class="book-page__no-result>
+        <div class="book-page__no-result">
           <h1>No Result</h1>
           <p>Sorry, there is no result for this ISBN.</p>
         </div>
