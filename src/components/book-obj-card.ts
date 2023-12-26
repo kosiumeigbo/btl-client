@@ -61,14 +61,14 @@ export default class BookObjCard extends HTMLElement {
   getLibraryButtonsMarkUp(): string {
     if (this._data.location === "booksInProgress") {
       return `
-        <button data-isbn="${this._data.isbn}" data-library="booksInProgress" title="Add to 'Books In Progress'">
+        <button data-isbn="${this._data.isbn}" data-library="booksInProgress" title="Add to or Remove from 'Books In Progress'">
           <i class="fa-regular fa-circle-check" style="color: #2aff1c"></i> <i class="fa-solid fa-book-open"></i
           ><span>In Progress</span>
         </button>
-        <button data-isbn="${this._data.isbn}" data-library="booksToRead" title="Add to 'Books To Read'">
+        <button data-isbn="${this._data.isbn}" data-library="booksToRead" title="Add to or Remove from 'Books To Read'">
           <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-list"></i><span>To Read</span>
         </button>
-        <button data-isbn="${this._data.isbn}" data-library="booksDone" title="Add to 'Books Done'">
+        <button data-isbn="${this._data.isbn}" data-library="booksDone" title="Add to or Remove from 'Books Done'">
           <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-check"></i><span>Done</span>
         </button>
         `;
@@ -76,14 +76,14 @@ export default class BookObjCard extends HTMLElement {
 
     if (this._data.location === "booksToRead") {
       return `
-        <button data-isbn="${this._data.isbn}" data-library="booksInProgress" title="Add to 'Books In Progress'">
+        <button data-isbn="${this._data.isbn}" data-library="booksInProgress" title="Add to or Remove from 'Books In Progress'">
           <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-book-open"></i
           ><span>In Progress</span>
         </button>
-        <button data-isbn="${this._data.isbn}" data-library="booksToRead" title="Add to 'Books To Read'">
+        <button data-isbn="${this._data.isbn}" data-library="booksToRead" title="Add to or Remove from 'Books To Read'">
           <i class="fa-regular fa-circle-check" style="color: #2aff1c"></i> <i class="fa-solid fa-list"></i><span>To Read</span>
         </button>
-        <button data-isbn="${this._data.isbn}" data-library="booksDone" title="Add to 'Books Done'">
+        <button data-isbn="${this._data.isbn}" data-library="booksDone" title="Add to or Remove from 'Books Done'">
           <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-check"></i><span>Done</span>
         </button>
       `;
@@ -91,28 +91,28 @@ export default class BookObjCard extends HTMLElement {
 
     if (this._data.location === "booksDone") {
       return `
-        <button data-isbn="${this._data.isbn}" data-library="booksInProgress" title="Add to 'Books In Progress'">
+        <button data-isbn="${this._data.isbn}" data-library="booksInProgress" title="Add to or Remove from 'Books In Progress'">
           <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-book-open"></i
           ><span>In Progress</span>
         </button>
-        <button data-isbn="${this._data.isbn}" data-library="booksToRead" title="Add to 'Books To Read'">
+        <button data-isbn="${this._data.isbn}" data-library="booksToRead" title="Add to or Remove from 'Books To Read'">
           <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-list"></i><span>To Read</span>
         </button>
-        <button data-isbn="${this._data.isbn}" data-library="booksDone" title="Add to 'Books Done'">
+        <button data-isbn="${this._data.isbn}" data-library="booksDone" title="Add to or Remove from 'Books Done'">
           <i class="fa-regular fa-circle-check" style="color: #2aff1c"></i> <i class="fa-solid fa-check"></i><span>Done</span>
         </button>
         `;
     }
 
     return `
-      <button data-isbn="${this._data.isbn}" data-library="booksInProgress" title="Add to 'Books In Progress'">
+      <button data-isbn="${this._data.isbn}" data-library="booksInProgress" title="Add to or Remove from 'Books In Progress'">
         <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-book-open"></i
         ><span>In Progress</span>
       </button>
-      <button data-isbn="${this._data.isbn}" data-library="booksToRead" title="Add to 'Books To Read'">
+      <button data-isbn="${this._data.isbn}" data-library="booksToRead" title="Add to or Remove from 'Books To Read'">
         <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-list"></i><span>To Read</span>
       </button>
-      <button data-isbn="${this._data.isbn}" data-library="booksDone" title="Add to 'Books Done'">
+      <button data-isbn="${this._data.isbn}" data-library="booksDone" title="Add to or Remove from 'Books Done'">
         <i class="fa-solid fa-circle-plus"></i> <i class="fa-solid fa-check"></i><span>Done</span>
       </button>
         `;
@@ -135,7 +135,7 @@ export default class BookObjCard extends HTMLElement {
         ${this.getLibraryButtonsMarkUp()}
       </div>
     </div>
-    <a href="/book?isbn=${this._data.isbn}">
+    <a class="link" href="/book?isbn=${this._data.isbn}">
       Go to book page &nbsp; <i class="fa-solid fa-arrow-right-from-bracket"></i>
     </a>
   </div>

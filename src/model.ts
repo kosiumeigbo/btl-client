@@ -147,8 +147,9 @@ const updateStateViewedBook = async function (isbn: string): Promise<undefined |
     const bookSearchResult = await getBookObj(isbn);
     if (bookSearchResult instanceof Error) throw bookSearchResult;
 
-    if (typeof bookSearchResult === "string") {
-      throw new Error("No result found for the ISBN provided");
+    if (bookSearchResult === "No result") {
+      state.viewedBook = bookSearchResult;
+      return;
     }
 
     const bookInLibrary = state.libraryBooks.find((book) => book.isbn === bookSearchResult.isbn);

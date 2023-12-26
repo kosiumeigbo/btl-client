@@ -17,6 +17,7 @@ nav {
   padding-left: 1rem;
   padding-right: 1rem;
   transition: left 0.3s;
+  overflow-y: auto;
 
   @include base.respond-m {
     left: -15rem;
