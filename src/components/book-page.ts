@@ -1,5 +1,5 @@
 import type { BookObj, LibraryLocation, LibButtonPressedEventDetails } from "../types";
-import { state, addToLibraryBtnIsPressed, updateStateViewedBook, getLocalStorage, setLocalStorage } from "../model";
+import { state, addToLibraryBtnIsPressed, updateStateViewedBook } from "../model";
 import bookImage from "url:../assets/images/generic-book.png";
 
 export default class BookPage extends HTMLElement {
@@ -18,17 +18,13 @@ export default class BookPage extends HTMLElement {
   }
 
   connectedCallback(): void {
-    getLocalStorage();
+    console.log("Component mounted on the DOM");
 
     this.getBookObjFromISBN();
 
     this.addEventListener("click", (e) => {
       this.btnPressed(e);
     });
-  }
-
-  disconnectedCallback(): void {
-    setLocalStorage();
   }
 
   async getBookObjFromISBN(): Promise<undefined> {
