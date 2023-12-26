@@ -82,11 +82,16 @@ const addToLibraryBtnIsPressed = function (btnDataset: LibraryLocation, isbn: st
       updatedBk.location = "not-in-library";
       state.nonLibraryBooks.push(updatedBk);
 
+      setLocalStorage();
+
       return updatedBk;
     }
 
     bookLibrary.location = btnDataset;
     state.libraryBooks.splice(bookLibraryIndex, 1, bookLibrary);
+
+    setLocalStorage();
+
     return bookLibrary;
   }
 
@@ -98,6 +103,8 @@ const addToLibraryBtnIsPressed = function (btnDataset: LibraryLocation, isbn: st
     updatedBk.location = btnDataset;
 
     state.libraryBooks.push(updatedBk);
+
+    setLocalStorage();
 
     return updatedBk;
   }
@@ -169,6 +176,8 @@ const updateStateSearchResult = async function (isbn: string): Promise<undefined
     } else {
       state.search.result = bookSearchResult;
       state.nonLibraryBooks.push(bookSearchResult);
+
+      setLocalStorage();
     }
   } catch (e) {
     return e as Error;
@@ -198,6 +207,8 @@ const updateStateViewedBook = async function (isbn: string): Promise<undefined |
     } else {
       state.viewedBook = bookSearchResult;
       state.nonLibraryBooks.push(bookSearchResult);
+
+      setLocalStorage();
     }
   } catch (e) {
     return e as Error;
