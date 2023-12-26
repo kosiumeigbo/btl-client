@@ -897,4 +897,17 @@ nav hr {
   }
 }
 
+.book-page-error,
+.book-page-no-result {
+  padding-top: 2.5rem;
+  padding-bottom: 2rem;
+  width: min(90%, 90rem);
+  margin-inline: auto;
+  overflow-x: auto;
+}
+.book-page-error > h1,
+.book-page-no-result > h1 {
+  margin-bottom: 2rem;
+}
+
 /*# sourceMappingURL=main.css.map */
