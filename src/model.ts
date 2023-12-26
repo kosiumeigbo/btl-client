@@ -367,5 +367,11 @@ export {
   updateStateNyTimesBestSeller,
   updateStateSearchResult,
   updateStateViewedBook,
-  resetStateSearch
+  resetStateSearch,
+  setLibraryBooksInLocalStorage,
+  setNonLibraryBooksInLocalStorage,
+  setLocalStorage,
+  getLibraryBooksFromLocalStorage,
+  getNonLibraryBooksFromLocalStorage,
+  getLocalStorage
 };
