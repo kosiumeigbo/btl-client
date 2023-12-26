@@ -1,5 +1,5 @@
 import type SubLibCard from "./sub-lib-card";
-import { state } from "../model";
+import { state, getLocalStorage, setLocalStorage } from "../model";
 import "./sub-lib-card";
 
 export default class LibraryPage extends HTMLElement {
@@ -8,6 +8,8 @@ export default class LibraryPage extends HTMLElement {
   }
 
   connectedCallback(): void {
+    getLocalStorage();
+
     this.render();
 
     const subLibCards: NodeListOf<SubLibCard> = document.querySelectorAll("sub-lib-card");
@@ -30,6 +32,10 @@ export default class LibraryPage extends HTMLElement {
         books: state.libraryBooks.filter((book) => book.location === "booksDone")
       };
     }
+  }
+
+  disconnectedCallback(): void {
+    setLocalStorage();
   }
 
   render(): void {

@@ -1,4 +1,4 @@
-import { state, resetStateSearch, updateStateSearchResult } from "../model";
+import { state, resetStateSearch, updateStateSearchResult, getLocalStorage, setLocalStorage } from "../model";
 import type { BookObj } from "../types";
 import type BookObjCard from "./book-obj-card";
 import "./book-obj-card";
@@ -27,6 +27,8 @@ export default class SearchPage extends HTMLElement {
   }
 
   connectedCallback(): void {
+    getLocalStorage();
+
     this.data = state.search;
     this.render();
 
@@ -41,6 +43,7 @@ export default class SearchPage extends HTMLElement {
   }
 
   disconnectedCallback(): void {
+    setLocalStorage();
     resetStateSearch();
   }
 
