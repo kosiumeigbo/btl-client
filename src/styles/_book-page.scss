@@ -177,10 +177,19 @@
           }
         }
       }
-
-      // @include base.respond-l() {
-      //   grid-template-columns: 1fr;
-      // }
     }
+  }
+}
+
+.book-page-error,
+.book-page-no-result {
+  padding-top: 2.5rem;
+  padding-bottom: 2rem;
+  width: min(90%, base.$screen-xl);
+  margin-inline: auto;
+  overflow-x: auto;
+
+  > h1 {
+    margin-bottom: 2rem;
   }
 }
