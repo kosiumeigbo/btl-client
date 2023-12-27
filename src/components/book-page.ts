@@ -32,7 +32,6 @@ export default class BookPage extends HTMLElement {
   }
 
   async getBookObjFromISBN(): Promise<undefined> {
-    console.log("this is null in getBookObjFromISBN");
     this.innerHTML = `<div class="book-page"><h1>Loading...</h1></div>`;
 
     const searchParams = new URLSearchParams(window.location.search);
@@ -58,8 +57,6 @@ export default class BookPage extends HTMLElement {
   }
 
   renderForNullISBN = (): void => {
-    console.log("this is null in renderForNullISBN");
-
     this.innerHTML = `
       <div class="book-page-error">
         <h1>Invalid Page URL</h1>
