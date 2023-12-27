@@ -4,5 +4,4 @@ server
 .DS_Store
 .parcel-cache
 testData.ts
-src/components/TestComponent.ts
-src/components/OuterTestComponent.ts
+src/components/*TestComponent.ts
