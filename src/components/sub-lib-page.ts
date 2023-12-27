@@ -1,5 +1,6 @@
 import type { BookObj } from "../types";
-import { /* state, */ getLocalStorage, setLocalStorage } from "../model";
+import type BookObjCard from "../components/book-obj-card";
+import { state, getLocalStorage, setLocalStorage } from "../model";
 import "../components/book-obj-card";
 
 export default class SubLibPage extends HTMLElement {
@@ -20,12 +21,53 @@ export default class SubLibPage extends HTMLElement {
   connectedCallback(): void {
     getLocalStorage();
 
-    this.render();
+    this.getSubLibraryFromURLSearchParams();
   }
 
   disconnectedCallback(): void {
     setLocalStorage();
   }
+
+  getSubLibraryFromURLSearchParams(): void {
+    this.innerHTML = `<div class="book-page"><h1>Loading...</h1></div>`;
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const subLibrary = searchParams.get("q");
+
+    if (subLibrary === null) {
+      this.renderForNullOrWrongSubLibrary();
+      return;
+    }
+
+    const qIsAValidLocation = state.locations.some((loc) => loc === subLibrary);
+
+    if (!qIsAValidLocation) {
+      this.renderForNullOrWrongSubLibrary();
+      return;
+    }
+
+    this.data = state.libraryBooks.filter((book) => book.location === subLibrary);
+    this.render();
+
+    const allBookObjCard: NodeListOf<BookObjCard> = document.querySelectorAll("book-obj-card");
+
+    if (allBookObjCard.length === 0) {
+      return;
+    }
+
+    for (let i = 0; i < allBookObjCard.length; i++) {
+      allBookObjCard[i].data = this.data[i];
+    }
+  }
+
+  renderForNullOrWrongSubLibrary = (): void => {
+    this.innerHTML = `
+      <div class="book-page-error">
+        <h1>Invalid Page URL</h1>
+        <p>Sorry, this is an invalid page URL.</p>
+      </div>
+    `;
+  };
 
   render(): void {
     this.innerHTML = this.getMarkup();
@@ -34,13 +76,16 @@ export default class SubLibPage extends HTMLElement {
   getMarkup(): string {
     if (this.data.length === 0) {
       return `
-    <div class="book-page-no-result">
-      <h1>No Result</h1>
-      <p>Sorry, there is no result for this ISBN.</p>
-    </div>        
+    <div class="sub-lib-page-empty">
+      <h1>No Books Here</h1>
+      <p>There are currently no books here. Come back when it isn't empty 😀</p>
+    </div>
         `;
     }
-    return ``;
+
+    return `
+    ${this.data.map((book) => "<book-obj-card></book-obj-card>").join("")}
+    `;
   }
 }
 
