@@ -1,5 +1,5 @@
-import type { LibButtonPressedEventDetails } from "./types";
-import { state, getLocalStorage } from "./model";
+import type { LibButtonPressedEventDetails } from "../types";
+import { state, getLocalStorage } from "../model";
 
 document.addEventListener("DOMContentLoaded", () => {
   const elBooksToRead = document.getElementById("books-to-read-total");
