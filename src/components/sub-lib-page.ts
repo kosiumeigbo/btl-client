@@ -93,8 +93,10 @@ export default class SubLibPage extends HTMLElement {
     }
 
     return `
-    <h1>${libPar === "booksInProgress" ? "In Progress" : libPar === "booksToRead" ? "To Read" : "Done"}</h1>
-    ${this.data.map((book) => "<book-obj-card></book-obj-card>").join("")}
+    <div class="sub-lib-page">
+      <h1>${libPar === "booksInProgress" ? "In Progress" : libPar === "booksToRead" ? "To Read" : "Done"}</h1>
+      ${this.data.map((book) => "<book-obj-card></book-obj-card>").join("")}
+    </div>
     `;
   }
 }
