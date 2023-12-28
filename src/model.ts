@@ -33,6 +33,42 @@ const resetStateSearch = function (): void {
   state.search.result = null;
 };
 
+// Function that saves the state.libraryBooks array to local storage
+const setLibraryBooksInLocalStorage = function (): void {
+  localStorage.setItem("libraryBooks", JSON.stringify(state.libraryBooks));
+};
+
+// Function that saves the state.nonLibraryBooks array to local storage
+const setNonLibraryBooksInLocalStorage = function (): void {
+  localStorage.setItem("nonLibraryBooks", JSON.stringify(state.nonLibraryBooks));
+};
+
+// Function that runs both setLibraryBooksInLocalStorage and setNonLibraryBooksInLocalStorage functions
+const setLocalStorage = function (): void {
+  setLibraryBooksInLocalStorage();
+  setNonLibraryBooksInLocalStorage();
+};
+
+// Function that gets the libraryBooks array from local storage
+// and saves it to state.libraryBooks
+const getLibraryBooksFromLocalStorage = function (): void {
+  const libraryBooks = JSON.parse(localStorage.getItem("libraryBooks") ?? "[]");
+  state.libraryBooks = libraryBooks;
+};
+
+// Function that gets the nonLibraryBooks array from local storage
+// and saves it to state.nonLibraryBooks
+const getNonLibraryBooksFromLocalStorage = function (): void {
+  const nonLibraryBooks = JSON.parse(localStorage.getItem("nonLibraryBooks") ?? "[]");
+  state.nonLibraryBooks = nonLibraryBooks;
+};
+
+// Function that runs both getLibraryBooksInLocalStorage and getNonLibraryBooksInLocalStorage functions
+const getLocalStorage = function (): void {
+  getLibraryBooksFromLocalStorage();
+  getNonLibraryBooksFromLocalStorage();
+};
+
 // Function takes in the isbn from the data-isbn property and the btnLibrary param is from the data-library property
 // on the pressed button. It returns either the
 const addToLibraryBtnIsPressed = function (btnDataset: LibraryLocation, isbn: string): Error | BookObj {
@@ -46,11 +82,16 @@ const addToLibraryBtnIsPressed = function (btnDataset: LibraryLocation, isbn: st
       updatedBk.location = "not-in-library";
       state.nonLibraryBooks.push(updatedBk);
 
+      setLocalStorage();
+
       return updatedBk;
     }
 
     bookLibrary.location = btnDataset;
     state.libraryBooks.splice(bookLibraryIndex, 1, bookLibrary);
+
+    setLocalStorage();
+
     return bookLibrary;
   }
 
@@ -62,6 +103,8 @@ const addToLibraryBtnIsPressed = function (btnDataset: LibraryLocation, isbn: st
     updatedBk.location = btnDataset;
 
     state.libraryBooks.push(updatedBk);
+
+    setLocalStorage();
 
     return updatedBk;
   }
@@ -133,6 +176,8 @@ const updateStateSearchResult = async function (isbn: string): Promise<undefined
     } else {
       state.search.result = bookSearchResult;
       state.nonLibraryBooks.push(bookSearchResult);
+
+      setLocalStorage();
     }
   } catch (e) {
     return e as Error;
@@ -162,6 +207,8 @@ const updateStateViewedBook = async function (isbn: string): Promise<undefined |
     } else {
       state.viewedBook = bookSearchResult;
       state.nonLibraryBooks.push(bookSearchResult);
+
+      setLocalStorage();
     }
   } catch (e) {
     return e as Error;
@@ -331,5 +378,11 @@ export {
   updateStateNyTimesBestSeller,
   updateStateSearchResult,
   updateStateViewedBook,
-  resetStateSearch
+  resetStateSearch,
+  setLibraryBooksInLocalStorage,
+  setNonLibraryBooksInLocalStorage,
+  setLocalStorage,
+  getLibraryBooksFromLocalStorage,
+  getNonLibraryBooksFromLocalStorage,
+  getLocalStorage
 };

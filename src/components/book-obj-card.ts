@@ -120,7 +120,7 @@ export default class BookObjCard extends HTMLElement {
 
   getMarkUp(): string {
     return `
-  <div class="book-obj-card" style="margin-bottom: 100px">
+  <div class="book-obj-card">
     <div class="book-obj-card__img">
       <a href="/book?isbn=${this._data.isbn}">
         <img src="${this._data.imageSource ?? bookImage}" alt="${this._data.title ?? "N/A"} by ${

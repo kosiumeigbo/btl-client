@@ -673,7 +673,6 @@ nav hr {
   grid-template-columns: repeat(5, 1fr);
   column-gap: 1rem;
   overflow-x: auto;
-  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2), -2px 0px 5px rgba(0, 0, 0, 0.2);
 }
 .sub-lib-card__empty {
   color: black;
@@ -907,6 +906,31 @@ nav hr {
 }
 .book-page-error > h1,
 .book-page-no-result > h1 {
+  margin-bottom: 2rem;
+}
+
+.sub-lib-page {
+  padding: 0rem 2rem;
+  width: min(90%, 90rem);
+  margin-inline: auto;
+}
+.sub-lib-page > h1 {
+  margin-bottom: 1rem;
+}
+.sub-lib-page .book-obj-card {
+  margin-bottom: 0.5rem;
+}
+
+.sub-lib-page-error,
+.sub-lib-page-empty {
+  padding-top: 2.5rem;
+  padding-bottom: 2rem;
+  width: min(90%, 90rem);
+  margin-inline: auto;
+  overflow-x: auto;
+}
+.sub-lib-page-error > h1,
+.sub-lib-page-empty > h1 {
   margin-bottom: 2rem;
 }
 
