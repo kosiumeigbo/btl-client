@@ -93,6 +93,7 @@ export default class BookPage extends HTMLElement {
 
         if (!(updatedCardState instanceof Error)) {
           this.data = updatedCardState;
+          this.render();
         }
       }
 
