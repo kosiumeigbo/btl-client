@@ -909,4 +909,29 @@ nav hr {
   margin-bottom: 2rem;
 }
 
+.sub-lib-page {
+  padding: 0rem 2rem;
+  width: min(90%, 90rem);
+  margin-inline: auto;
+}
+.sub-lib-page > h1 {
+  margin-bottom: 1rem;
+}
+.sub-lib-page .book-obj-card {
+  margin-bottom: 0.5rem;
+}
+
+.sub-lib-page-error,
+.sub-lib-page-empty {
+  padding-top: 2.5rem;
+  padding-bottom: 2rem;
+  width: min(90%, 90rem);
+  margin-inline: auto;
+  overflow-x: auto;
+}
+.sub-lib-page-error > h1,
+.sub-lib-page-empty > h1 {
+  margin-bottom: 2rem;
+}
+
 /*# sourceMappingURL=main.css.map */
