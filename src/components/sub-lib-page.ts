@@ -47,7 +47,7 @@ export default class SubLibPage extends HTMLElement {
     }
 
     this.data = state.libraryBooks.filter((book) => book.location === subLibrary);
-    this.render();
+    this.render(subLibrary);
 
     const allBookObjCard: NodeListOf<BookObjCard> = document.querySelectorAll("book-obj-card");
 
@@ -69,11 +69,11 @@ export default class SubLibPage extends HTMLElement {
     `;
   };
 
-  render(): void {
-    this.innerHTML = this.getMarkup();
+  render(libPar: string): void {
+    this.innerHTML = this.getMarkup(libPar);
   }
 
-  getMarkup(): string {
+  getMarkup(libPar: string): string {
     if (this.data.length === 0) {
       return `
     <div class="sub-lib-page-empty">
@@ -84,6 +84,7 @@ export default class SubLibPage extends HTMLElement {
     }
 
     return `
+    <h1>${libPar === "booksInProgress" ? "In Progress" : libPar === "booksToRead" ? "To Read" : "Done"}</h1>
     ${this.data.map((book) => "<book-obj-card></book-obj-card>").join("")}
     `;
   }
