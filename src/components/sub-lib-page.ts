@@ -35,14 +35,14 @@ export default class SubLibPage extends HTMLElement {
     const subLibrary = searchParams.get("q");
 
     if (subLibrary === null) {
-      this.renderForNullOrWrongSubLibrary();
+      this.renderForNullSubLibrary();
       return;
     }
 
     const qIsAValidLocation = state.locations.some((loc) => loc === subLibrary);
 
     if (!qIsAValidLocation) {
-      this.renderForNullOrWrongSubLibrary();
+      this.renderForInvalidSubLibrary();
       return;
     }
 
@@ -60,11 +60,20 @@ export default class SubLibPage extends HTMLElement {
     }
   }
 
-  renderForNullOrWrongSubLibrary = (): void => {
+  renderForNullSubLibrary = (): void => {
     this.innerHTML = `
-      <div class="book-page-error">
+      <div class="sub-lib-page-error">
         <h1>Invalid Page URL</h1>
         <p>Sorry, this is an invalid page URL.</p>
+      </div>
+    `;
+  };
+
+  renderForInvalidSubLibrary = (): void => {
+    this.innerHTML = `
+      <div class="sub-lib-page-error">
+        <h1>Invalid Sub-Library Location</h1>
+        <p>Sorry, this is an invalid sub-library.</p>
       </div>
     `;
   };
