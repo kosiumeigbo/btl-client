@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "parcel index.html --dist-dir server",
+    "dev": "ts-node-dev src/server.ts",
     "build": "parcel build index.html --public-url https://kosiumeigbo.github.io/book-tracker-library/ --dist-dir dist",
     "deploy": "gh-pages -d dist",
     "watchSass": "sass --watch src/styles/main.scss src/styles/main.css"
@@ -21,6 +22,8 @@
     "@babel/preset-env": "^7.23.2",
     "@parcel/transformer-sass": "^2.10.1",
     "@parcel/transformer-typescript-tsc": "^2.10.1",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.5",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
     "eslint": "^8.51.0",
@@ -32,6 +35,12 @@
     "gh-pages": "^6.1.0",
     "parcel": "^2.10.1",
     "prettier": "3.0.3",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.2",
+    "ts-node": "^10.9.2"
   }
 }
