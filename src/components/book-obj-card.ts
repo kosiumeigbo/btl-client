@@ -122,7 +122,7 @@ export default class BookObjCard extends HTMLElement {
     return `
   <div class="book-obj-card">
     <div class="book-obj-card__img">
-      <a href="/book?isbn=${this._data.isbn}">
+      <a href="/book?isbn=${this._data.isbn}" data-link>
         <img src="${this._data.imageSource ?? bookImage}" alt="${this._data.title ?? "N/A"} by ${
           this._data.author ?? "N/A"
         }" />
@@ -135,7 +135,7 @@ export default class BookObjCard extends HTMLElement {
         ${this.getLibraryButtonsMarkUp()}
       </div>
     </div>
-    <a class="link" href="/book?isbn=${this._data.isbn}">
+    <a class="link" href="/book?isbn=${this._data.isbn}" data-link>
       Go to book page &nbsp; <i class="fa-solid fa-arrow-right-from-bracket"></i>
     </a>
   </div>

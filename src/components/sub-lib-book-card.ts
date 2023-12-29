@@ -26,7 +26,7 @@ export default class SubLibBookCard extends HTMLElement {
   getMarkUp(): string {
     return `
   <div class="sub-lib-book-card">
-    <a href="/book?isbn=${this.data.isbn}">
+    <a href="/book?isbn=${this.data.isbn}" data-link>
       <div><img src="${this.data.imageSource ?? bookImage}" alt="${this.data.title ?? "N/A"} by ${
         this.data.author ?? "N/A"
       }" /></div>
