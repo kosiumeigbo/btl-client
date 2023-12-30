@@ -5,7 +5,7 @@
   "scripts": {
     "start": "parcel index.html --dist-dir server",
     "dev": "ts-node-dev src/server.ts",
-    "build": "parcel build index.html --public-url https://kosiumeigbo.github.io/book-tracker-library/ --dist-dir dist",
+    "build": "parcel build index.html --public-url https://book-tracker-library.vercel.app/ --dist-dir dist",
     "deploy": "gh-pages -d dist",
     "watchSass": "sass --watch src/styles/main.scss src/styles/main.css"
   },
