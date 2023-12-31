@@ -2,23 +2,23 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/search",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/library",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/sub-library",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/book",
-      "destination": "/index.html"
+      "destination": "/"
     }
   ]
 }
