@@ -1,0 +1,24 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/"
+    },
+    {
+      "source": "/search",
+      "destination": "/"
+    },
+    {
+      "source": "/library",
+      "destination": "/"
+    },
+    {
+      "source": "/sub-library",
+      "destination": "/"
+    },
+    {
+      "source": "/book",
+      "destination": "/"
+    }
+  ]
+}
