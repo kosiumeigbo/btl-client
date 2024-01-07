@@ -1,0 +1,7 @@
+node_modules
+dist
+server
+.DS_Store
+.parcel-cache
+testData.ts
+src/components/*TestComponent.ts

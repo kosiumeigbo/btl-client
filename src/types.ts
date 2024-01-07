@@ -1,6 +1,6 @@
 /* JSON response from NYT Best Sellers API */
 
-export interface BestSellersData {
+export type BestSellersData = {
   list_id: number;
   list_name: string;
   list_name_encoded: string;
@@ -12,7 +12,7 @@ export interface BestSellersData {
   books: BookRes[];
 }
 
-interface BookRes {
+type BookRes = {
   age_group: string;
   amazon_product_url: string;
   article_chapter_link: string;
@@ -40,7 +40,7 @@ interface BookRes {
   buy_links: BuyLink[];
 }
 
-interface BuyLink {
+type BuyLink = {
   name: string;
   url: string;
 }
@@ -49,7 +49,7 @@ interface BuyLink {
 
 /* JSON response from OpenLibrary API */
 
-export interface OpenLibraryData {
+export type OpenLibraryData = {
   url?: string;
   key?: string;
   title?: string;
@@ -64,52 +64,52 @@ export interface OpenLibraryData {
   number_of_pages?: number;
 }
 
-export interface Author {
+export type Author = {
   url: string;
   name: string;
 }
 
-export interface Identifiers {
+export type Identifiers = {
   isbn_10: string[];
   isbn_13?: string[];
   openlibrary: string[];
 }
 
-export interface Publisher {
+export type Publisher = {
   name: string;
 }
 
-export interface Subject {
+export type Subject = {
   name: string;
   url: string;
 }
 
-export interface Ebook {
+export type Ebook = {
   preview_url: string;
   availability: string;
   formats: Formats;
   read_url: string;
 }
 
-export interface Formats {
+export type Formats = {
   pdf: Pdf;
   epub: Epub;
   text: Text;
 }
 
-export interface Pdf {
+export type Pdf = {
   url: string;
 }
 
-export interface Epub {
+export type Epub = {
   url: string;
 }
 
-export interface Text {
+export type Text = {
   url: string;
 }
 
-export interface Cover {
+export type Cover = {
   small: string;
   medium: string;
   large: string;
@@ -119,13 +119,13 @@ export interface Cover {
 
 /* JSON response from Google Books API */
 
-export interface Root {
+export type Root = {
   kind: string;
   totalItems: number;
   items: Item[];
 }
 
-export interface Item {
+export type Item = {
   kind: string;
   id: string;
   etag: string;
@@ -136,7 +136,7 @@ export interface Item {
   searchInfo: SearchInfo;
 }
 
-export interface VolumeInfo {
+export type VolumeInfo = {
   title: string;
   subtitle: string;
   authors: string[];
@@ -159,33 +159,33 @@ export interface VolumeInfo {
   canonicalVolumeLink: string;
 }
 
-export interface IndustryIdentifier {
+export type IndustryIdentifier = {
   type: string;
   identifier: string;
 }
 
-export interface ReadingModes {
+export type ReadingModes = {
   text: boolean;
   image: boolean;
 }
 
-export interface PanelizationSummary {
+export type PanelizationSummary = {
   containsEpubBubbles: boolean;
   containsImageBubbles: boolean;
 }
 
-export interface ImageLinks {
+export type ImageLinks = {
   smallThumbnail: string;
   thumbnail: string;
 }
 
-export interface SaleInfo {
+export type SaleInfo = {
   country: string;
   saleability: string;
   isEbook: boolean;
 }
 
-export interface AccessInfo {
+export type AccessInfo = {
   country: string;
   viewability: string;
   embeddable: boolean;
@@ -198,15 +198,15 @@ export interface AccessInfo {
   quoteSharingAllowed: boolean;
 }
 
-export interface EpubG {
+export type EpubG = {
   isAvailable: boolean;
 }
 
-export interface PdfG {
+export type PdfG = {
   isAvailable: boolean;
 }
 
-export interface SearchInfo {
+export type SearchInfo = {
   textSnippet: string;
 }
 
@@ -215,13 +215,13 @@ export interface SearchInfo {
 /* Types & Interfaces for App */
 
 // Interface for the object for a NYT Best Sellers category card that will be on the home page
-export interface nyTimesHomePageListObj {
+export type nyTimesHomePageListObj = {
   listName: string;
   books: BookObjNYT[];
 }
 
 // Interface for the object for a NYT Best Sellers book that will be on the home page
-export interface BookObjNYT {
+export type BookObjNYT = {
   author: string;
   imageSource: string;
   isbn: string;
@@ -229,7 +229,7 @@ export interface BookObjNYT {
 }
 
 // Interface for the basic fundamental book object to display on the UI
-export interface BookObj {
+export type BookObj = {
   author: string | null;
   imageSource: string | null;
   isbn: string;
@@ -244,14 +244,14 @@ export interface BookObj {
 export type LibraryLocation = "booksDone" | "booksInProgress" | "booksToRead" | "not-in-library";
 
 // Interface for custom event to update library numbers in nav section
-export interface LibButtonPressedEventDetails {
+export type LibButtonPressedEventDetails = {
   totalBooksToRead: () => number;
   totalBooksDone: () => number;
   totalBooksInProgress: () => number;
 }
 
 // Interface for data in the sub-lib-card component
-export interface SubLibCardObject {
+export type SubLibCardObject = {
   title: string;
   location: LibraryLocation;
   books: BookObj[];
@@ -261,7 +261,7 @@ export interface SubLibCardObject {
 
 /* Interface for State Object */
 
-export interface State {
+export type State = {
   viewedBook: BookObj | "No result";
   search: {
     query: string;
